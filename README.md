@@ -17,6 +17,10 @@ No environment variables or backend service are needed. The application button g
 
 ## Content updates
 
+- The page follows the Pelourinho project, interdisciplinary roles, life in Bahia, academics, and application details. Keep the invitation to all majors and the no-prior-VR-experience message visible in the hero and project section.
+- Project themes and formats are possibilities to develop with Brazilian collaborators, not confirmed exhibits. Keep that distinction when updating copy.
+- Practical details were checked against the live [UF Abroad brochure](https://ufabroad.internationalcenter.ufl.edu/_portal/tds-program-brochure?programid=14652) on September 27, 2026. The brochure remains the source of current terms.
+- The [Digital e Criativo campus page](https://senaicimatec.com.br/sobre-o-senai-cimatec/nossos-campi/cimatec-digital/) describes the partner's location and areas of work. SVR 2025's official [conference sponsorship prospectus](https://sibgrapi.sbc.org.br/2025/wp-content/uploads/2025/02/SVR-SIBGRAPI-SBGAMES-2025_Sponsorship-Proposal_English.pdf) identifies SENAI CIMATEC as the venue.
 - The `#enter-salvador` section links to the first Marble concept world. Check the link and loading behavior periodically and retain an accessible text description.
 - Add approved footage and Ingrid Winkler's invitation when available.
 - Verify the exact housing and partner site captions before publishing photos as documentary representations of those places.
@@ -28,3 +32,9 @@ No environment variables or backend service are needed. The application button g
 - `assets/praia-do-forte-village.jpg`: Glauco Umbelino, [source](https://commons.wikimedia.org/wiki/File:Praia_do_Forte-BA.jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
 
 Attribution and license links also appear in the site footer. These photographs show Praia do Forte; they do not depict the program hostel.
+
+The hero reuses the repository's `Colorful street scene of Salvador, Brazil.jpg`, also shown in the official UF Abroad brochure. It depicts Pelourinho, not a completed project exhibit or the partner's facilities.
+
+## Checking the page
+
+There is no build step or JavaScript dependency. Serve the site locally and check the hero, project, courses, and practical details at desktop, tablet, and phone widths. Navigation, application links, and native disclosure controls work without JavaScript. Verify that disclosures also work with the keyboard and that narrow layouts do not scroll horizontally. Honor the system's reduced-motion preference when changing animation.
