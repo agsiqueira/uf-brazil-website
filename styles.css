@@ -8,3 +8,16 @@
 .hero-content{max-width:1100px;padding-top:clamp(3rem,7vh,6rem);padding-bottom:clamp(9rem,16vh,12rem)}
 .hero h1{font-size:clamp(2.8rem,5.4vw,5.9rem);line-height:1.07;letter-spacing:-.055em}
 @media(max-width:640px){.hero{min-height:calc(100svh - 66px)}.hero-content{padding-top:4rem;padding-bottom:10rem}.hero h1{font-size:clamp(2.6rem,10vw,4.3rem);line-height:1.1}}
+.partner-video{max-width:900px;margin-top:2.5rem}.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#102d45}.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.partner-video p{margin:.7rem 0 0;color:#536675}.partner-video a{font-weight:700;color:#89502c}
+/* Keep the facts bar in the document flow so it cannot cover the buttons. */
+.hero{display:flex;flex-direction:column}
+.hero-content{flex:1;padding-bottom:clamp(3rem,6vw,5rem)}
+.hero-facts{position:relative;left:auto;right:auto;bottom:auto;margin-top:auto}
+@media(max-width:640px){.hero-content{padding-bottom:3rem}}
+.heritage-note{max-width:620px;margin:1.1rem 0 0;padding-left:1rem;border-left:3px solid #eab660;color:#fff;font-size:.95rem;line-height:1.5}.heritage-note span{color:#f2bd72;margin-right:.35rem}.heritage-note a{text-decoration-thickness:1px;text-underline-offset:3px}
+.place-label .tamar-note{margin-top:1rem;padding-left:1rem;border-left:3px solid #f2bd72}.tamar-note a{text-decoration-thickness:1px;text-underline-offset:3px}
+.more-videos{margin-top:1.5rem;max-width:1100px;border-top:1px solid #cabda9;border-bottom:1px solid #cabda9}.more-videos summary{cursor:pointer;padding:1.1rem .2rem;font-weight:700;color:#243f50;list-style-position:inside}.more-videos summary span{font-weight:400;color:#667784;margin-left:.5rem}.more-videos summary:focus-visible{outline:3px solid #bf622f;outline-offset:3px}.optional-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem;padding:1rem 0 2rem}.optional-video-grid article{min-width:0}.optional-video-grid h3{font-size:1.4rem;margin:0 0 .4rem}.optional-video-grid p{color:#536675;min-height:3.2em}.optional-video-grid a{display:inline-block;margin-top:.6rem;color:#89502c;font-weight:700}@media(max-width:700px){.optional-video-grid{grid-template-columns:1fr}.optional-video-grid p{min-height:0}}
+
+.visitor-videos{background:#e9deca}.visitor-videos .section-heading{margin-bottom:1rem}.visitor-videos .more-videos{max-width:none}
+
+.program-name{max-width:480px;margin:1.5rem 0 0;padding-left:1rem;border-left:3px solid var(--orange);font-weight:700;line-height:1.45;color:#345269}
