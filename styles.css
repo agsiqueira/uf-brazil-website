@@ -21,3 +21,16 @@
 .visitor-videos{background:#e9deca}.visitor-videos .section-heading{margin-bottom:1rem}.visitor-videos .more-videos{max-width:none}
 
 .program-name{max-width:480px;margin:1.5rem 0 0;padding-left:1rem;border-left:3px solid var(--orange);font-weight:700;line-height:1.45;color:#345269}
+
+/* The hero grows to fit its heading, copy, actions, and facts at every width. */
+.hero{height:auto;min-height:calc(100svh - 76px)}
+.hero-content{flex:1 0 auto;padding-top:clamp(3.5rem,7vh,6rem);padding-bottom:2.5rem}
+.hero h1{font-size:clamp(3.3rem,6vw,6.4rem)}
+.hero-facts{margin-top:0}
+@media(max-width:640px){.hero{min-height:calc(100svh - 66px)}.hero-content{padding:3.5rem 1.4rem 2.5rem}.hero h1{font-size:clamp(2.6rem,10vw,4.3rem)}}
+
+.visitor-video-grid{padding-top:0;padding-bottom:0}.visitor-video-grid article{background:#f7f3ea;padding:clamp(1rem,2vw,1.6rem)}
+
+.partner-feature{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center;gap:clamp(2rem,4vw,4rem);margin-top:2.5rem;padding:clamp(1.5rem,4vw,3.5rem);background:#122c45;color:#fff}.partner-feature-copy{min-width:0}.partner-kicker{color:#f2bd72;font-size:.72rem;letter-spacing:.16em;font-weight:700}.partner-feature h3{font-family:'DM Sans',Arial,sans-serif;font-size:clamp(2.2rem,3.7vw,4rem);letter-spacing:-.04em;line-height:1.06;margin:1.1rem 0 1.6rem}.partner-feature h3 em{font-family:'Playfair Display',Georgia,serif;font-weight:500;color:#f2bd72}.partner-feature-copy>p:not(.partner-kicker){max-width:520px;color:#edf1f1;font-size:1.05rem}.partner-feature-copy a{color:#f2bd72;font-weight:700}.partner-feature-copy .partner-feature-foot{font-size:.92rem;color:#c9d9df}.partner-feature-media{min-width:0}.partner-feature-media .video-frame{box-shadow:0 12px 30px #071b2b80}.partner-feature-media>a{display:inline-block;margin-top:.8rem;color:#f2bd72;font-weight:700}@media(max-width:850px){.partner-feature{grid-template-columns:1fr}.partner-feature h3 br{display:none}}
+
+.place-card.city{min-height:720px}.place-card.city .place-label{width:100%;max-width:640px}.city-video{max-width:440px;margin-top:1.5rem}.city-video .video-frame{box-shadow:0 10px 25px #071b2baa}.city-video>a{display:inline-block;margin-top:.7rem;color:#fff;font-size:.9rem;font-weight:700}.city-video>a:hover{text-decoration-thickness:2px}@media(max-width:640px){.place-card.city{min-height:680px}.city-video{max-width:100%}}
