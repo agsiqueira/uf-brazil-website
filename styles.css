@@ -3,3 +3,8 @@
 
 .excursion{display:grid;grid-template-columns:minmax(220px,2fr) 3fr;gap:clamp(1.5rem,4vw,4rem);align-items:center;margin-top:4rem;background:#fff}.excursion img{width:100%;height:350px;object-fit:cover}.excursion>div{padding:2rem 2rem 2rem 0}.excursion h3{font-family:'Playfair Display',Georgia,serif}.excursion small{color:#60717b}.planning-more{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}.planning-more article{border-top:1px solid #b8a587;padding-top:1.4rem}.planning-more h3{font-size:1.6rem}.planning-more p{max-width:520px}.planning-more a{font-weight:700;color:#89502c}footer span{max-width:650px}footer a{overflow-wrap:anywhere}@media(max-width:640px){.excursion,.planning-more{grid-template-columns:1fr}.excursion img{height:260px}.excursion>div{padding:0 1.5rem 2rem}}
 .partner-note{margin-top:2rem;padding:1.5rem 2rem;background:#122c45;color:#fff;border-left:6px solid #eab660}.partner-note span{font-size:.72rem;letter-spacing:.16em;font-weight:700;color:#f2bd72}.partner-note p{max-width:850px;margin:.7rem 0 0;font-size:1.08rem}.partner-note a{color:#f2bd72}
+/* Let the introduction grow at narrow widths and browser zoom levels. */
+.hero{height:auto;min-height:calc(100svh - 76px)}
+.hero-content{max-width:1100px;padding-top:clamp(3rem,7vh,6rem);padding-bottom:clamp(9rem,16vh,12rem)}
+.hero h1{font-size:clamp(2.8rem,5.4vw,5.9rem);line-height:1.07;letter-spacing:-.055em}
+@media(max-width:640px){.hero{min-height:calc(100svh - 66px)}.hero-content{padding-top:4rem;padding-bottom:10rem}.hero h1{font-size:clamp(2.6rem,10vw,4.3rem);line-height:1.1}}
