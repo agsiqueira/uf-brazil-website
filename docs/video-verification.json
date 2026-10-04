@@ -1,0 +1,214 @@
+[
+  {
+    "url": "http://127.0.0.1:8081/",
+    "embeds": [
+      {
+        "url": "https://www.youtube-nocookie.com/embed/5Fza7_oQT28?autoplay=1&playsinline=1",
+        "referer": "http://127.0.0.1:8081/"
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/embed/ia_2SHV88Q0?autoplay=1&playsinline=1",
+        "referer": "http://127.0.0.1:8081/"
+      }
+    ],
+    "media": [
+      {
+        "status": 200
+      },
+      {
+        "status": 200
+      },
+      {
+        "status": 200
+      },
+      {
+        "status": 200
+      },
+      {
+        "status": 200
+      },
+      {
+        "status": 200
+      },
+      {
+        "status": 200
+      },
+      {
+        "status": 200
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/qoe",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/qoe",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/qoe",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/qoe",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/playback",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/ptracking",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/playback",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/ptracking",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/watchtime",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/qoe",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/qoe",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/watchtime",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/api/stats/watchtime",
+        "error": {
+          "errorText": "net::ERR_ABORTED"
+        }
+      }
+    ],
+    "headers": {
+      "connection": "keep-alive",
+      "content-type": "text/html",
+      "date": "Sun, 04 Oct 2026 01:22:37 GMT",
+      "keep-alive": "timeout=5",
+      "transfer-encoding": "chunked"
+    },
+    "context": {
+      "origin": "http://127.0.0.1:8081",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
+      "referrer": ""
+    },
+    "playerCount": 2,
+    "verificationStatus": "Playback inspection performed below",
+    "players": [
+      {
+        "url": "https://www.youtube-nocookie.com/embed/5Fza7_oQT28?autoplay=1&playsinline=1",
+        "before": {
+          "text": "SENAI CIMATEC\n7.15K subscribers",
+          "videos": [
+            {
+              "currentTime": 9.382757,
+              "paused": false,
+              "readyState": 4
+            }
+          ]
+        },
+        "after": {
+          "text": "SENAI CIMATEC\n7.15K subscribers",
+          "videos": [
+            {
+              "currentTime": 13.398187,
+              "paused": false,
+              "readyState": 4
+            }
+          ]
+        },
+        "playbackVerified": true
+      },
+      {
+        "url": "https://www.youtube-nocookie.com/embed/ia_2SHV88Q0?autoplay=1&playsinline=1",
+        "before": {
+          "text": "breathes history a place where the\nEchoes of colonial Grandeur\nAI",
+          "videos": [
+            {
+              "currentTime": 13.403249,
+              "paused": false,
+              "readyState": 4
+            }
+          ]
+        },
+        "after": {
+          "text": "the vibrant rhythms of African culture\nfounded in\nAI",
+          "videos": [
+            {
+              "currentTime": 17.416549,
+              "paused": false,
+              "readyState": 4
+            }
+          ]
+        },
+        "playbackVerified": true
+      }
+    ]
+  },
+  {
+    "url": "https://ufinbrazil.mixed.group/",
+    "embeds": [],
+    "media": [],
+    "failures": [],
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "a45060f4dfae1a44-MIA",
+      "content-encoding": "zstd",
+      "content-type": "text/html",
+      "date": "Sun, 04 Oct 2026 01:23:00 GMT",
+      "last-modified": "Sun, 27 Sep 2026 18:07:51 GMT",
+      "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+      "priority": "u=0,i",
+      "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=0RPhBSb0Gq4WXABK9rnm%2BA9r6H8As8SwCoFAjdivRRXx5cdSVWRHIuqI4UNr4CgI46dZgASY%2Fsudd8Gna0kIkqd8z1u%2F4ghSMoyDDt9Wj5rTTixRZ1EHp5rjnv1j32sTX2AQJJiGSzY0oY0LBo4NU3oK%2BYiX\"}]}",
+      "server": "cloudflare",
+      "server-timing": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=9,cfOrigin;dur=94, cfExtPri",
+      "vary": "Accept-Encoding"
+    },
+    "context": {
+      "origin": "https://ufinbrazil.mixed.group",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
+      "referrer": ""
+    },
+    "playerCount": 0,
+    "verificationStatus": "Not verified: deployed page does not contain click-to-load players",
+    "players": []
+  }
+]
