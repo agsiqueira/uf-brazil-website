@@ -46,6 +46,8 @@ Alex supplied `Updated Author Credit Book Mockup.png`, now included as `assets/b
 
 ## Verification
 
+The opening asset was subsequently upgraded from the PDF extraction to Alex's supplied full-resolution `Students project stories onto Pelourinho.png` (1774 x 887). Desktop allocates approximately two-thirds of the hero to this image; the entire scene remains uncropped on every checked viewport.
+
 Run `npm ci`, install a Playwright Chromium browser (`npx playwright install chromium`), then `npm run check`. On Windows with installed Edge, use `$env:PLAYWRIGHT_CHANNEL='msedge'; npm run check` instead.
 
 The checks cover desktop 1440px, tablet 820px, phones 390px/320px, signup layouts, horizontal overflow, loaded images, internal anchors, seven-section order, book positioning in the first half, opening photo in the mobile first screen, keyboard skip/disclosure controls, reduced motion, and WCAG A/AA automated axe checks. Signup tests use local intercepted responses only; no real registrations or email are sent. Accepted, rejected, ambiguous-200, and network-failure cases are covered, as are email-only requirements and guide/book configuration integration.

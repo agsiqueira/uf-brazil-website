@@ -1053,3 +1053,19 @@ footer {
   font-size: 13px;
   margin-top: 8px;
 }
+@media (min-width: 1001px) {
+  .hero {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.65fr);
+    gap: 0 36px;
+    max-width: 1680px;
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+  .hero h1 {
+    font-size: 44px;
+  }
+  .hero-photo {
+    align-self: start;
+    margin-top: 28px;
+  }
+}
