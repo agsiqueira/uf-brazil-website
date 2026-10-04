@@ -24,12 +24,20 @@
         ><span class="brand-mark">UF</span
         ><span>IN BRAZIL<small>SUMMER C 2027</small></span></a
       >
-      <nav aria-label="Main navigation">
-        <a href="#project">The project</a><a href="#book">The book</a
-        ><a href="#life">Coastal life</a><a href="#details">Plan your summer</a>
-      </nav>
+      <details class="nav-menu" open>
+        <summary aria-label="Navigation menu">
+          &#9776; <span>Menu</span>
+        </summary>
+        <nav aria-label="Main navigation">
+          <a href="#project">The project</a><a href="#book">The book</a
+          ><a href="#world-cup">World Cup</a
+          ><a href="#testimonials">Testimonials</a
+          ><a href="#life">Life in Brazil</a
+          ><a href="#details">Dates &amp; costs</a>
+        </nav>
+      </details>
       <a class="header-link" href="signup.html"
-        >Get information <span aria-hidden="true">&#8599;</span></a
+        >Send me more information <span aria-hidden="true">&#8599;</span></a
       >
     </header>
     <main id="main">
@@ -109,7 +117,7 @@
           </article>
           <article>
             <span class="number">03</span>
-            <h3>A contribution to a new book</h3>
+            <h3>Be featured in a book</h3>
             <p>
               Help shape a new book through your images, insights, and creative
               work.
@@ -240,6 +248,116 @@
         </div>
       </section>
       <section
+        class="section world-cup"
+        id="world-cup"
+        aria-labelledby="world-cup-title"
+      >
+        <figure class="stadium-photo">
+          <img
+            src="assets/salvador-stadium-concept.png"
+            width="1536"
+            height="1024"
+            loading="lazy"
+            alt="AI-generated concept of cheering spectators overlooking a football pitch at golden hour; not the actual Salvador venue or a confirmed program excursion"
+          />
+          <figcaption>
+            AI-generated illustration of match-day atmosphere.
+          </figcaption>
+        </figure>
+        <div class="world-cup-copy">
+          <h2 id="world-cup-title">Your summer. A World Cup host city.</h2>
+          <p>
+            Be in Salvador while the FIFA Women's World Cup 2027 brings
+            international football to the city. Experience the excitement of a
+            host city alongside your creative work, coastal living, and cultural
+            discoveries.
+          </p>
+          <p class="event-dates">
+            June 24&ndash;July 25, 2027 &middot; During your program
+          </p>
+          <a
+            href="https://www.fifa.com/en/tournaments/womens/womensworldcup/brazil-2027/articles/match-schedule-unveiled"
+            >FIFA's official schedule &#8599;</a
+          >
+          <p class="qualification">
+            Match attendance depends on tickets and program arrangements.
+          </p>
+        </div>
+      </section>
+      <section
+        class="section testimonials"
+        id="testimonials"
+        aria-labelledby="testimonials-title"
+      >
+        <h2 id="testimonials-title">Testimonials</h2>
+        <div class="testimonial-grid">
+          <article
+            class="testimonial"
+            id="ayush"
+            data-speaker="ayush"
+            aria-labelledby="ayush-title"
+          >
+            <h3 id="ayush-title">Meet Dr. Ayush Bhargava.</h3>
+            <img
+              class="ayush-portrait"
+              src="assets/ayush-bhargava.png"
+              width="350"
+              height="412"
+              loading="lazy"
+              alt="Portrait of Dr. Ayush Bhargava"
+            />
+            <div class="ayush-copy">
+              <p>
+                Meet Dr. Ayush Bhargava, a keynote speaker at SVR 2025 at SENAI
+                CIMATEC, whose research explores human perception and
+                interaction in immersive technology.
+              </p>
+              <p class="ayush-credentials">
+                <strong>Dr. Ayush Bhargava</strong
+                ><span>User Experience Researcher, Meta Reality Labs</span
+                ><span>SVR 2025 keynote speaker at SENAI CIMATEC</span
+                ><span>PhD in Computer Science, Clemson University</span>
+              </p>
+              <div class="ayush-video" data-ayush-video hidden></div>
+            </div>
+          </article>
+          <article
+            class="testimonial"
+            id="leandro"
+            data-speaker="leandro"
+            aria-labelledby="leandro-title"
+          >
+            <h3 id="leandro-title">Leandro Gazineo</h3>
+            <img
+              class="ayush-portrait"
+              src="assets/leandro-gazineo.png"
+              width="357"
+              height="363"
+              loading="lazy"
+              alt="Portrait of Leandro Gazineo holding a conductor's baton"
+            />
+            <div class="testimonial-copy">
+              <p>
+                A conductor from Salvador, Leandro brings a local perspective on
+                the city's music, heritage, and creative energy.
+              </p>
+              <p class="ayush-credentials">
+                <strong>Leandro Gazineo</strong
+                ><span>Orchestral conductor &middot; Salvador native</span
+                ><span
+                  >DMA in Orchestral Conducting, Louisiana State
+                  University</span
+                >
+              </p>
+              <div class="ayush-video" data-leandro-video hidden></div>
+            </div>
+          </article>
+        </div>
+        <a class="button testimonials-action" href="signup.html"
+          >Send me more information <span aria-hidden="true">&#8599;</span></a
+        >
+      </section>
+      <section
         class="section research"
         id="academics"
         aria-labelledby="research-title"
@@ -306,35 +424,6 @@
               Summer 2026 course brought UF and Brazilian students together.
             </p>
           </div>
-        </div>
-      </section>
-      <section
-        class="section ayush"
-        id="ayush"
-        aria-labelledby="ayush-title"
-        hidden
-      >
-        <h2 id="ayush-title">Meet Dr. Ayush Bhargava.</h2>
-        <img
-          class="ayush-portrait"
-          src="assets/ayush-bhargava.png"
-          width="350"
-          height="412"
-          loading="lazy"
-          alt="Portrait of Dr. Ayush Bhargava"
-        />
-        <div class="ayush-copy">
-          <p>
-            Meet Dr. Ayush Bhargava, a keynote speaker at SVR 2025 at SENAI
-            CIMATEC, whose research explores human perception and interaction in
-            immersive technology.
-          </p>
-          <p class="ayush-credentials">
-            <strong>Dr. Ayush Bhargava</strong
-            ><span>User Experience Researcher, Meta Reality Labs</span
-            ><span>PhD in Computer Science, Clemson University</span>
-          </p>
-          <div class="ayush-video" data-ayush-video hidden></div>
         </div>
       </section>
       <section class="section life" id="life" aria-labelledby="life-title">
@@ -449,43 +538,6 @@
               <a href="https://blocognv.com/">Bloco GNV</a>.
             </p>
           </div>
-        </div>
-      </section>
-      <section
-        class="section world-cup"
-        id="world-cup"
-        aria-labelledby="world-cup-title"
-      >
-        <figure class="stadium-photo">
-          <img
-            src="assets/salvador-stadium-concept.png"
-            width="1536"
-            height="1024"
-            loading="lazy"
-            alt="AI-generated concept of cheering spectators overlooking a football pitch at golden hour; not the actual Salvador venue or a confirmed program excursion"
-          />
-          <figcaption>
-            AI-generated illustration of match-day atmosphere.
-          </figcaption>
-        </figure>
-        <div class="world-cup-copy">
-          <h2 id="world-cup-title">Your summer. A World Cup host city.</h2>
-          <p>
-            Be in Salvador while the FIFA Women's World Cup 2027 brings
-            international football to the city. Experience the excitement of a
-            host city alongside your creative work, coastal living, and cultural
-            discoveries.
-          </p>
-          <p class="event-dates">
-            June 24&ndash;July 25, 2027 &middot; During your program
-          </p>
-          <a
-            href="https://www.fifa.com/en/tournaments/womens/womensworldcup/brazil-2027/articles/match-schedule-unveiled"
-            >FIFA's official schedule &#8599;</a
-          >
-          <p class="qualification">
-            Match attendance depends on tickets and program arrangements.
-          </p>
         </div>
       </section>
       <section

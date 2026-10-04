@@ -251,7 +251,7 @@ textarea:focus-visible {
   max-width: 240px;
 }
 .section {
-  padding: 44px max(5%, calc((100% - 1250px) / 2));
+  padding: 40px max(5%, calc((100% - 1250px) / 2));
   scroll-margin-top: 20px;
 }
 .future {
@@ -466,29 +466,97 @@ dd {
   font-size: 13px;
   margin: 12px 0 0;
 }
-.ayush {
-  display: grid;
-  grid-template-columns: 210px minmax(0, 1fr);
-  gap: 18px 36px;
+.testimonials {
   background: #eef2ec;
 }
-.ayush[hidden] {
-  display: none;
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 24px;
 }
-.ayush h2 {
-  grid-column: 2;
-  font-size: 29px;
+.testimonial {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 16px 20px;
+  padding: 22px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  align-content: start;
+}
+.testimonial h3 {
+  grid-column: 1 / -1;
+  font-size: 21px;
 }
 .ayush-portrait {
   grid-column: 1;
-  grid-row: 1 / 3;
   width: 100%;
   height: auto;
-  align-self: center;
+  align-self: start;
 }
-.ayush-copy {
+.ayush-copy,
+.testimonial-copy {
   grid-column: 2;
-  max-width: 800px;
+  font-size: 14px;
+}
+.testimonials-action {
+  margin-top: 24px;
+}
+.nav-menu {
+  border: 0;
+}
+.nav-menu > summary {
+  display: none;
+}
+.nav-menu:not([open]) > nav {
+  display: flex;
+}
+.header nav {
+  gap: 18px;
+  font-size: 13px;
+}
+@media (max-width: 1100px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header-link {
+    margin-left: auto;
+    font-size: 12px;
+  }
+  .nav-menu {
+    order: 3;
+    width: 100%;
+    border-top: 1px solid var(--line);
+  }
+  .nav-menu > summary {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 0;
+    min-height: 44px;
+    font-size: 14px;
+  }
+  .header .nav-menu:not([open]) > nav {
+    display: none;
+  }
+  .header .nav-menu nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+    border: 0;
+    padding: 0 0 12px;
+    font-size: 14px;
+  }
+  .header .nav-menu nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
 }
 .ayush-credentials {
   font-size: 14px;
@@ -554,18 +622,22 @@ dd {
   grid-template-columns: 1fr 1fr;
 }
 @media (max-width: 760px) {
-  .ayush {
+  .testimonial-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
   }
-  .ayush h2,
+  .testimonial {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+  .testimonial h3,
   .ayush-copy,
+  .testimonial-copy,
   .ayush-portrait {
     grid-column: 1;
     grid-row: auto;
   }
   .ayush-portrait {
-    width: 180px;
+    width: 140px;
     max-width: 100%;
   }
   .world-cup {
@@ -991,7 +1063,7 @@ footer {
     font-size: 11px;
   }
   .section {
-    padding: 32px 5%;
+    padding: 28px 5%;
   }
   h2 {
     font-size: 29px;

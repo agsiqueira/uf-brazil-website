@@ -1,5 +1,23 @@
 (() => {
   const config = window.UFBrazilConfig || {};
+  const menu = document.querySelector(".nav-menu");
+  const compactMenu = window.matchMedia("(max-width: 1100px)");
+  const updateMenu = () => {
+    if (menu) menu.open = !compactMenu.matches;
+  };
+  updateMenu();
+  compactMenu.addEventListener("change", updateMenu);
+  menu?.querySelectorAll("a").forEach((link) =>
+    link.addEventListener("click", () => {
+      if (compactMenu.matches) menu.removeAttribute("open");
+    }),
+  );
+  menu?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && compactMenu.matches) {
+      menu.removeAttribute("open");
+      menu.querySelector("summary").focus();
+    }
+  });
   const availability = config.availability;
   if (
     Number.isInteger(availability?.places) &&
@@ -61,55 +79,60 @@
     }
   };
   const guide = safeUrl(config.programGuideUrl);
-  const invitation = config.ayushInvitation;
-  const invitationSlot = document.querySelector("[data-ayush-video]");
-  const invitationVideo = safeUrl(invitation?.videoUrl);
-  const invitationCaptions = safeUrl(invitation?.captionsUrl);
-  if (
-    invitationSlot &&
-    invitation?.approved === true &&
-    invitationVideo &&
-    invitationCaptions &&
-    typeof invitation.transcript === "string" &&
-    invitation.transcript.trim()
-  ) {
-    if (typeof invitation.headline === "string" && invitation.headline.trim())
-      document.querySelector("#ayush-title").textContent = invitation.headline;
-    const play = document.createElement("button");
-    play.type = "button";
-    play.className = "invitation-play";
-    play.textContent = "Watch Ayush's invitation \u00b7 30 seconds";
-    const transcript = document.createElement("details");
-    const summary = document.createElement("summary");
-    summary.textContent = "Transcript";
-    const text = document.createElement("p");
-    text.textContent = invitation.transcript;
-    transcript.append(summary, text);
-    play.addEventListener(
-      "click",
-      () => {
-        const video = document.createElement("video");
-        video.controls = true;
-        video.crossOrigin = "anonymous";
-        video.playsInline = true;
-        video.preload = "metadata";
-        video.src = invitationVideo;
-        video.setAttribute("aria-label", "Ayush's invitation");
-        const captions = document.createElement("track");
-        captions.kind = "captions";
-        captions.src = invitationCaptions;
-        captions.srclang = "en";
-        captions.label = "English";
-        captions.default = true;
-        video.append(captions);
-        play.replaceWith(video);
-        video.focus();
-        video.play().catch(() => {});
-      },
-      { once: true },
-    );
-    invitationSlot.replaceChildren(play, transcript);
-    invitationSlot.hidden = false;
+  for (const speaker of ["ayush", "leandro"]) {
+    const invitation = config[`${speaker}Invitation`];
+    const invitationSlot = document.querySelector(`[data-${speaker}-video]`);
+    const invitationVideo = safeUrl(invitation?.videoUrl);
+    const invitationCaptions = safeUrl(invitation?.captionsUrl);
+    if (
+      invitationSlot &&
+      invitation?.approved === true &&
+      invitationVideo &&
+      invitationCaptions &&
+      Number.isFinite(invitation.durationSeconds) &&
+      invitation.durationSeconds > 0 &&
+      typeof invitation.transcript === "string" &&
+      invitation.transcript.trim()
+    ) {
+      if (typeof invitation.headline === "string" && invitation.headline.trim())
+        document.querySelector(`#${speaker}-title`).textContent =
+          invitation.headline;
+      const play = document.createElement("button");
+      play.type = "button";
+      play.className = "invitation-play";
+      const name = speaker === "ayush" ? "Ayush" : "Leandro";
+      play.textContent = `Watch ${name}'s invitation${Number.isFinite(invitation.durationSeconds) && invitation.durationSeconds > 0 ? ` \u00b7 ${invitation.durationSeconds} seconds` : ""}`;
+      const transcript = document.createElement("details");
+      const summary = document.createElement("summary");
+      summary.textContent = "Transcript";
+      const text = document.createElement("p");
+      text.textContent = invitation.transcript;
+      transcript.append(summary, text);
+      play.addEventListener(
+        "click",
+        () => {
+          const video = document.createElement("video");
+          video.controls = true;
+          video.crossOrigin = "anonymous";
+          video.playsInline = true;
+          video.preload = "metadata";
+          video.src = invitationVideo;
+          video.setAttribute("aria-label", `${name}'s invitation`);
+          const captions = document.createElement("track");
+          captions.kind = "captions";
+          captions.src = invitationCaptions;
+          captions.srclang = "en";
+          captions.label = "English";
+          captions.default = true;
+          video.append(captions);
+          play.replaceWith(video);
+          video.focus();
+        },
+        { once: true },
+      );
+      invitationSlot.replaceChildren(play, transcript);
+      invitationSlot.hidden = false;
+    }
   }
   if (guide)
     document.querySelectorAll("[data-guide]").forEach((link) => {

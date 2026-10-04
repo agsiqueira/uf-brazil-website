@@ -3,9 +3,9 @@
     "label": "desktop",
     "width": 1440,
     "scrollWidth": 1440,
-    "height": 7117,
+    "height": 7556,
     "photoTop": 144,
-    "bookTop": 1982.46875,
+    "bookTop": 1966.46875,
     "broken": [],
     "missingAnchors": [],
     "accessibilityViolations": 0
@@ -14,9 +14,9 @@
     "label": "tablet",
     "width": 820,
     "scrollWidth": 820,
-    "height": 6953,
-    "photoTop": 302.390625,
-    "bookTop": 2018.6875,
+    "height": 7681,
+    "photoTop": 359.390625,
+    "bookTop": 2059.6875,
     "broken": [],
     "missingAnchors": [],
     "accessibilityViolations": 0
@@ -25,9 +25,9 @@
     "label": "phone",
     "width": 390,
     "scrollWidth": 390,
-    "height": 9668,
-    "photoTop": 303.984375,
-    "bookTop": 2783.3125,
+    "height": 10724,
+    "photoTop": 308.984375,
+    "bookTop": 2772.3125,
     "broken": [],
     "missingAnchors": [],
     "accessibilityViolations": 0
@@ -36,9 +36,9 @@
     "label": "small-phone",
     "width": 320,
     "scrollWidth": 320,
-    "height": 10122,
-    "photoTop": 324.78125,
-    "bookTop": 2924.109375,
+    "height": 11325,
+    "photoTop": 362.96875,
+    "bookTop": 2946.296875,
     "broken": [],
     "missingAnchors": [],
     "accessibilityViolations": 0
@@ -85,5 +85,8 @@
   },
   {
     "ayushInvitation": "Approval gate and click-to-play/captions/transcript structure passed (fixtures only; recording not supplied)"
+  },
+  {
+    "testimonials": "Both approval gates, configured durations, native controls, captions/transcripts, and no-autoplay checks passed with fixtures; real recordings pending"
   }
 ]

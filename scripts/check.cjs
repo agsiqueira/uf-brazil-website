@@ -49,9 +49,23 @@ async function checkLayout(page, label, url, size) {
   assert.deepEqual(metrics.missingAnchors, [], `${label}: missing anchors`);
   if (url === "/") {
     assert.equal(await page.locator("main > section").count(), 9);
-    assert.equal(await page.locator("main > section:visible").count(), 8);
-    assert.equal(await page.locator("#ayush").isVisible(), false);
-    assert.equal(await page.locator("#academics + #ayush + #life").count(), 1);
+    assert.equal(await page.locator("main > section:visible").count(), 9);
+    assert.deepEqual(
+      await page
+        .locator("main > section")
+        .evaluateAll((sections) => sections.map((s) => s.id || "opening")),
+      [
+        "opening",
+        "future",
+        "project",
+        "book",
+        "world-cup",
+        "testimonials",
+        "academics",
+        "life",
+        "details",
+      ],
+    );
     assert.equal(await page.locator('#ayush a[href="signup.html"]').count(), 0);
     assert.equal(await page.locator("[data-ayush-video]:visible").count(), 0);
     assert.equal(
@@ -66,7 +80,7 @@ async function checkLayout(page, label, url, size) {
       ],
     );
     assert.equal(
-      await page.locator("#life + #world-cup + #details").count(),
+      await page.locator("#book + #world-cup + #testimonials").count(),
       1,
     );
     assert.equal(
@@ -98,10 +112,46 @@ async function checkLayout(page, label, url, size) {
       "AI-generated concept visualization inspired by Pelourinho.",
     );
     assert.equal(await page.locator(".video-player").count(), 0);
+    assert.equal(await page.locator("[data-leandro-video]:visible").count(), 0);
+    assert.equal(await page.locator("#testimonials .testimonial").count(), 2);
+    const menu = page.locator(".nav-menu");
+    if (size.width <= 1100) {
+      await menu.locator("summary").focus();
+      await page.keyboard.press("Enter");
+      assert.equal(await menu.locator("nav").isVisible(), true);
+      await page.keyboard.press("Escape");
+      assert.equal(await menu.locator("nav").isVisible(), false);
+    }
+    for (const destination of [
+      "project",
+      "book",
+      "world-cup",
+      "testimonials",
+      "life",
+      "details",
+    ]) {
+      if (size.width <= 1100) await menu.locator("summary").click();
+      await menu.locator(`a[href="#${destination}"]`).click();
+      await page.waitForFunction((id) => {
+        const box = document.querySelector(`#${id} h2`).getBoundingClientRect();
+        return box.top >= 0 && box.top < innerHeight;
+      }, destination);
+      const heading = await page
+        .locator(`#${destination} h2`)
+        .first()
+        .boundingBox();
+      assert(
+        heading.y >= 0 && heading.y < size.height,
+        `${label}: heading obscured for ${destination}`,
+      );
+    }
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(400);
     for (const selector of [
       ".project-photo img",
       ".coast-photos img",
       ".stadium-photo img",
+      ".ayush-portrait",
     ]) {
       for (const image of await page.locator(selector).all()) {
         const box = await image.boundingBox();
@@ -163,6 +213,7 @@ async function checkLayout(page, label, url, size) {
       ["coast", ".coast-photos"],
       ["practical", "#details"],
       ["world-cup", "#world-cup"],
+      ["testimonials", "#testimonials"],
     ]) {
       await page
         .locator(selector)
@@ -350,7 +401,7 @@ async function signupScenario(context, name, response, expected) {
   await invitationPage.route("**/site-config.js", (route) =>
     route.fulfill({
       contentType: "application/javascript",
-      body: `window.UFBrazilConfig = {ayushInvitation: {approved: ${approved}, headline: "Approved test headline", videoUrl: "/assets/test-invitation.mp4", captionsUrl: "/assets/test-captions.vtt", transcript: "Approved transcript fixture"}};`,
+      body: `window.UFBrazilConfig = {ayushInvitation: {approved: ${approved}, headline: "Approved test headline", videoUrl: "/assets/test-invitation.mp4", captionsUrl: "/assets/test-captions.vtt", transcript: "Approved transcript fixture", durationSeconds: 31}, leandroInvitation: {approved: ${approved}, headline: "Approved Leandro headline", videoUrl: "/assets/test-invitation.mp4", captionsUrl: "/assets/test-captions.vtt", transcript: "Leandro transcript fixture", durationSeconds: 42}};`,
     }),
   );
   await invitationPage.goto(base + "/");
@@ -364,14 +415,6 @@ async function signupScenario(context, name, response, expected) {
   );
   approved = true;
   await invitationPage.reload();
-  assert.equal(
-    await invitationPage.locator("#ayush").isVisible(),
-    false,
-    "The testimonial remains hidden even if recording configuration is approved",
-  );
-  await invitationPage
-    .locator("#ayush")
-    .evaluate((section) => (section.hidden = false));
   assert.equal(
     await invitationPage.locator("#ayush-title").innerText(),
     "Approved test headline",
@@ -394,7 +437,10 @@ async function signupScenario(context, name, response, expected) {
       .count(),
     1,
   );
-  await invitationPage.getByText("Transcript", { exact: true }).click();
+  await invitationPage
+    .locator("#ayush")
+    .getByText("Transcript", { exact: true })
+    .click();
   assert.equal(
     await invitationPage.getByText("Approved transcript fixture").isVisible(),
     true,
@@ -402,6 +448,38 @@ async function signupScenario(context, name, response, expected) {
   report.push({
     ayushInvitation:
       "Approval gate and click-to-play/captions/transcript structure passed (fixtures only; recording not supplied)",
+  });
+  await invitationPage
+    .getByRole("button", { name: "Watch Leandro's invitation" })
+    .click();
+  assert.equal(
+    await invitationPage.locator("#leandro video[controls]").count(),
+    1,
+  );
+  assert.equal(
+    await invitationPage.locator("#testimonials video[autoplay]").count(),
+    0,
+  );
+  assert.equal(
+    await invitationPage.locator("#leandro video").evaluate((v) => v.paused),
+    true,
+  );
+  await invitationPage.locator("#leandro summary").click();
+  assert.equal(
+    await invitationPage.getByText("Leandro transcript fixture").isVisible(),
+    true,
+  );
+  assert.equal(
+    await invitationPage.locator('#leandro track[kind="captions"]').count(),
+    1,
+  );
+  assert.equal(
+    await invitationPage.locator("#ayush video").evaluate((v) => v.paused),
+    true,
+  );
+  report.push({
+    testimonials:
+      "Both approval gates, configured durations, native controls, captions/transcripts, and no-autoplay checks passed with fixtures; real recordings pending",
   });
   await invitationPage.close();
   fs.writeFileSync(

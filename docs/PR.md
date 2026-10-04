@@ -1,6 +1,6 @@
 ## Change
 
-The previous recruitment page delayed the opening image on phones, repeated the all-majors invitation, and directed every main action to application. This revision presents nine concise sections: opening, outcomes, project/roles, book participation, research/industry, Ayush's portrait feature, coastal life/value, World Cup host-city experience, and practical details/signup.
+The previous recruitment page delayed the opening image on phones, repeated the all-majors invitation, and directed every main action to application. The approved nine-section order is now opening, benefits/facts, project/roles, book, World Cup, testimonials, research/industry, coastal life, and dates/costs/signup.
 
 Preserves the opening image, cleared coastal photographs with attribution, official application link, useful cultural resources, keyboard disclosures, skip link, and reduced motion. Includes the approved Ford and English-language context naming Dr. Alexandre Siqueira's Summer 2026 course, full-stay hostel coverage, visible prices, UNESCO/SVR 2025 context, and stronger book recognition. Two visible previews now load embedded players on click so students can watch in place; fallback YouTube links remain. Opening/closing QR codes point to the main website. The book spread is explicitly labeled concept artwork.
 
@@ -27,11 +27,14 @@ The opening now uses the approved AI-generated immersive-project scene from the 
 
 ## Screenshots
 
-Added the supplied Ayush portrait and factual introduction/credentials after research, before coastal life. The neutral headline is "Meet Dr. Ayush Bhargava." No unapproved first-person headline, script, or quote is public. The signup CTA beside his credentials was removed to avoid suggesting personal contact with Ayush; program signup actions remain at the opening, book, and closing. The configurable recording slot remains hidden until approval plus video/captions/transcript are supplied; fixture tests cover gating and click-to-play controls, not recording playback. Portrait proportions and mobile headline/portrait/introduction/credentials order are preserved.
+Testimonials now show Ayush and Leandro as two balanced factual profile cards, with supplied uncropped portraits and one shared information action. No attributed quotes or recordings are shown before each speaker's approval and complete recording/captions/transcript configuration. Labels use actual configured recording duration rather than a hardcoded 30 seconds. Native video controls do not autoplay. Existing isolated Ayush screenshots are superseded by the current testimonials captures.
 
-Ayush's section is now hidden at Alex's request pending an approved text testimonial. It occupies no layout space and is excluded from the accessibility tree. Its integration remains in the source, but even approved recording configuration does not unhide the section. Current full-page screenshots show eight visible sections; earlier isolated Ayush captures document a superseded version.
+Navigation labels and targets match the request. Phones/tablets use a native keyboard-operable compact disclosure menu, with Escape dismissal and closure after selection. Header information signup remains distinct. Tests check exact section order, six anchors, heading visibility, both portraits, and both speakers' configured/unconfigured states.
 
-Added the director-confirmed availability snapshot (12 places, October 3, 2026) at both opening and closing, maintained in one editable configuration and never reduced by information signups. Added a brief image-led World Cup host-city feature after coastal life with the supplied AI stadium illustration, FIFA schedule link, tournament dates, and ticket/program qualification. This extends the page to eight sections. Tests cover shared availability rendering, editable count/date, signup independence, feature order, and uncropped stadium imagery.
+Availability remains 12 places, updated October 3, 2026, maintained from actual program availability in one configuration. The World Cup feature is directly after the book and keeps its AI caption, official schedule, and attendance qualification. Previous opening/project/book/research/coastal/practical improvements remain intact.
+
+![Desktop testimonials](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/desktop-testimonials.png)
+![Phone testimonials](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/phone-testimonials.png)
 
 ![Desktop World Cup feature](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/desktop-world-cup.png)
 ![Phone World Cup feature](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/phone-world-cup.png)
