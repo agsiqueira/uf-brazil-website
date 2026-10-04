@@ -27,7 +27,7 @@ The opening now uses the approved AI-generated immersive-project scene from the 
 
 ## Screenshots
 
-Added the supplied Ayush portrait and factual introduction/credentials after research, before coastal life. The neutral headline is "Meet Dr. Ayush Bhargava." No unapproved first-person headline, script, or quote is public. A signup CTA is present. The configurable recording slot remains hidden until approval plus video/captions/transcript are supplied; fixture tests cover gating and click-to-play controls, not recording playback. Portrait proportions and mobile headline/portrait/introduction/credentials/action order are preserved.
+Added the supplied Ayush portrait and factual introduction/credentials after research, before coastal life. The neutral headline is "Meet Dr. Ayush Bhargava." No unapproved first-person headline, script, or quote is public. The signup CTA beside his credentials was removed to avoid suggesting personal contact with Ayush; program signup actions remain at the opening, book, and closing. The configurable recording slot remains hidden until approval plus video/captions/transcript are supplied; fixture tests cover gating and click-to-play controls, not recording playback. Portrait proportions and mobile headline/portrait/introduction/credentials order are preserved.
 
 ![Desktop Ayush feature](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/desktop-ayush.png)
 ![Phone Ayush feature](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/phone-ayush.png)

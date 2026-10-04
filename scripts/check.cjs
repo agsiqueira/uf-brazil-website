@@ -50,6 +50,7 @@ async function checkLayout(page, label, url, size) {
   if (url === "/") {
     assert.equal(await page.locator("main > section").count(), 9);
     assert.equal(await page.locator("#academics + #ayush + #life").count(), 1);
+    assert.equal(await page.locator('#ayush a[href="signup.html"]').count(), 0);
     assert.equal(await page.locator("[data-ayush-video]:visible").count(), 0);
     assert.equal(
       await page.locator("#ayush-title").innerText(),
