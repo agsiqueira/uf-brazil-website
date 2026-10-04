@@ -10,6 +10,8 @@ Alex's supplied author-credit book mockup now replaces the initial sample spread
 
 ## Validation
 
+The opening now uses the approved AI-generated immersive-project scene from the latest guide, with the exact concept caption. Desktop and mobile show the full scene without trimming students, projections, or prototypes. The original photograph appears as authentic Pelourinho destination imagery in coastal life and remains on the signup page.
+
 - `npm run check` in Chromium-based Edge: 1440px desktop, 820px tablet, 390px and 320px phones; signup desktop/phone.
 - No horizontal overflow, missing internal anchors, unloaded images, or automated WCAG A/AA axe violations in checked layouts.
 - Opening photograph enters the first phone screen; book appears in the first half of the page.

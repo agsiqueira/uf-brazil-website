@@ -18,7 +18,7 @@ See [release dependencies and email setup](docs/RELEASE.md) before merging or de
 
 Keep the approved sequence: opening, outcomes, project/roles, book, research/industry, coastal life/value, practical details/signup. Alex owns commitments and final messaging. The current copy includes the approved lasting exhibits, portfolio, language support, and full-stay housing commitments. Formats and role examples remain possibilities to develop with Brazilian collaborators.
 
-The original opening image, `Colorful street scene of Salvador, Brazil.jpg`, is retained and also appears in the official UF brochure. It depicts Pelourinho, not a student exhibit or partner facility.
+The opening uses `assets/pelourinho-immersive-concept.png`, the approved AI-generated project visualization extracted from the latest program guide. Its caption identifies it as a concept inspired by Pelourinho. The original `Colorful street scene of Salvador, Brazil.jpg` is retained in destination content and the signup page and also appears in the official UF brochure. It depicts Pelourinho, not a student exhibit or partner facility.
 
 - `assets/praia-do-forte-lighthouse.jpg`: Tatiana Azeviche / Setur, [source](<https://commons.wikimedia.org/wiki/File:Praia_do_Forte._Foto_Tatiana_Azeviche_Setur_(8577174259).jpg>), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/), resized to 1280px.
 - `assets/praia-do-forte-village.jpg`: Glauco Umbelino, [source](https://commons.wikimedia.org/wiki/File:Praia_do_Forte-BA.jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).

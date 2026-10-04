@@ -57,6 +57,22 @@ async function checkLayout(page, label, url, size) {
       );
     assert.equal(await page.locator("[data-guide]:visible").count(), 0);
     assert.equal(await page.locator(".video-preview").count(), 2);
+    const heroImage = page.locator(".hero-photo img");
+    const displayed = await heroImage.boundingBox();
+    const intrinsic = await heroImage.evaluate((img) => ({
+      width: img.naturalWidth,
+      height: img.naturalHeight,
+    }));
+    assert(
+      Math.abs(
+        displayed.width / displayed.height - intrinsic.width / intrinsic.height,
+      ) < 0.01,
+      "Opening scene must not crop students, projections, or prototypes",
+    );
+    assert.equal(
+      (await page.locator(".hero-photo figcaption").innerText()).trim(),
+      "AI-generated concept visualization inspired by Pelourinho.",
+    );
     assert.equal(await page.locator(".video-player").count(), 0);
     assert.equal(
       await page

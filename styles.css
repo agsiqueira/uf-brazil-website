@@ -1020,3 +1020,36 @@ footer {
     scroll-behavior: auto;
   }
 }
+.hero-photo {
+  align-self: center;
+  min-height: 0;
+  height: auto;
+  overflow: visible;
+}
+.hero-photo img {
+  position: static;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.hero-photo figcaption {
+  position: static;
+  background: none;
+  padding: 10px 0 0;
+  color: #4e625a;
+  font:
+    13px/1.6 "DM Sans",
+    Arial,
+    sans-serif;
+}
+.destination-photo {
+  margin-top: 28px;
+}
+.destination-photo img {
+  max-height: 400px;
+  object-fit: cover;
+}
+.destination-photo figcaption {
+  font-size: 13px;
+  margin-top: 8px;
+}
