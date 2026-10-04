@@ -46,6 +46,10 @@ Alex supplied `Updated Author Credit Book Mockup.png`, now included as `assets/b
 
 ## Verification
 
+Availability is the director-supplied snapshot of 12 places, updated October 3, 2026. Maintain `availability.places` and `availability.updated` together in `site-config.js` from actual program availability; no booking-system integration is configured. Information requests do not reserve places or change this number. Both opening and closing displays use the same snapshot.
+
+The brief World Cup feature follows coastal life. The director-supplied `Golden hour in Salvador's stadium.png` is stored as `assets/salvador-stadium-concept.png`; it is an AI illustration, not an actual venue photograph or confirmed excursion. Its caption and accessible description identify it as conceptual. No FIFA logo, endorsement, guaranteed tickets, or specific team's match is promised. Dates and host-city status were checked against [FIFA's tournament information](https://www.fifa.com/en/tournaments/womens/womensworldcup/brazil-2027/articles/everything-you-need-to-know) and [official schedule announcement](https://www.fifa.com/en/tournaments/womens/womensworldcup/brazil-2027/articles/match-schedule-unveiled).
+
 The opening asset was subsequently upgraded from the PDF extraction to Alex's supplied full-resolution `Students project stories onto Pelourinho.png` (1774 x 887). Desktop allocates approximately two-thirds of the hero to this image; the entire scene remains uncropped on every checked viewport.
 
 Run `npm ci`, install a Playwright Chromium browser (`npx playwright install chromium`), then `npm run check`. On Windows with installed Edge, use `$env:PLAYWRIGHT_CHANNEL='msedge'; npm run check` instead.

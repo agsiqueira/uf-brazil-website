@@ -1,6 +1,6 @@
 ## Change
 
-The previous recruitment page delayed the opening image on phones, repeated the all-majors invitation, and directed every main action to application. This revision presents seven concise sections: opening, outcomes, project/roles, book participation, research/industry, coastal life/value, and practical details/signup.
+The previous recruitment page delayed the opening image on phones, repeated the all-majors invitation, and directed every main action to application. This revision presents eight concise sections: opening, outcomes, project/roles, book participation, research/industry, coastal life/value, World Cup host-city experience, and practical details/signup.
 
 Preserves the opening image, cleared coastal photographs with attribution, official application link, useful cultural resources, keyboard disclosures, skip link, and reduced motion. Includes the approved Ford and English-language context naming Dr. Alexandre Siqueira's Summer 2026 course, full-stay hostel coverage, visible prices, UNESCO/SVR 2025 context, and stronger book recognition. Two visible previews now load embedded players on click so students can watch in place; fallback YouTube links remain. Opening/closing QR codes point to the main website. The book spread is explicitly labeled concept artwork.
 
@@ -26,6 +26,11 @@ The opening now uses the approved AI-generated immersive-project scene from the 
 - Docker build and production email delivery were not tested.
 
 ## Screenshots
+
+Added the director-confirmed availability snapshot (12 places, October 3, 2026) at both opening and closing, maintained in one editable configuration and never reduced by information signups. Added a brief image-led World Cup host-city feature after coastal life with the supplied AI stadium illustration, FIFA schedule link, tournament dates, and ticket/program qualification. This extends the page to eight sections. Tests cover shared availability rendering, editable count/date, signup independence, feature order, and uncropped stadium imagery.
+
+![Desktop World Cup feature](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/desktop-world-cup.png)
+![Phone World Cup feature](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/phone-world-cup.png)
 
 Latest refinement adds the supplied project concept image, preserves natural coastal image proportions, combines housing, moves inclusions beside fees and courses into Academics, and consolidates research evidence/English support without increasing page text. Responsive crop/order assertions pass. Real HTTP playback in Edge was verified through advancing clocks and successful media responses with the correct Referer; Error 153 was not reproduced. The in-app browser also played both videos. The older public HTTPS page has no click-to-load players, so this PR's deployed HTTPS playback remains unverified. Request/header/context evidence is in `docs/video-verification.json`; see release notes for diagnosis and follow-up.
 

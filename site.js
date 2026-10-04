@@ -1,5 +1,32 @@
 (() => {
   const config = window.UFBrazilConfig || {};
+  const availability = config.availability;
+  if (
+    Number.isInteger(availability?.places) &&
+    availability.places >= 0 &&
+    /^\d{4}-\d{2}-\d{2}$/.test(availability.updated || "")
+  ) {
+    const date = new Date(`${availability.updated}T00:00:00Z`);
+    if (
+      !Number.isNaN(date.getTime()) &&
+      date.toISOString().slice(0, 10) === availability.updated
+    ) {
+      const updated = new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        timeZone: "UTC",
+      }).format(date);
+      document.querySelectorAll("[data-availability]").forEach((block) => {
+        const count = document.createElement("strong");
+        count.textContent = `${availability.places} ${availability.places === 1 ? "place" : "places"} currently available`;
+        const stamp = document.createElement("span");
+        stamp.textContent = `Updated ${updated}`;
+        block.replaceChildren(count, stamp);
+        block.hidden = false;
+      });
+    }
+  }
   document.querySelectorAll("[data-video]").forEach((link) => {
     const id = link.dataset.video;
     if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return;

@@ -48,7 +48,22 @@ async function checkLayout(page, label, url, size) {
   assert.deepEqual(metrics.broken, [], `${label}: broken images`);
   assert.deepEqual(metrics.missingAnchors, [], `${label}: missing anchors`);
   if (url === "/") {
-    assert.equal(await page.locator("main > section").count(), 7);
+    assert.equal(await page.locator("main > section").count(), 8);
+    assert.deepEqual(
+      await page.locator("[data-availability]:visible").allTextContents(),
+      [
+        "12 places currently availableUpdated October 3, 2026",
+        "12 places currently availableUpdated October 3, 2026",
+      ],
+    );
+    assert.equal(
+      await page.locator("#life + #world-cup + #details").count(),
+      1,
+    );
+    assert.equal(
+      (await page.locator(".stadium-photo figcaption").innerText()).trim(),
+      "AI-generated illustration of match-day atmosphere.",
+    );
     assert(metrics.bookTop < metrics.height / 2, `${label}: book too late`);
     if (size.width <= 760)
       assert(
@@ -74,7 +89,11 @@ async function checkLayout(page, label, url, size) {
       "AI-generated concept visualization inspired by Pelourinho.",
     );
     assert.equal(await page.locator(".video-player").count(), 0);
-    for (const selector of [".project-photo img", ".coast-photos img"]) {
+    for (const selector of [
+      ".project-photo img",
+      ".coast-photos img",
+      ".stadium-photo img",
+    ]) {
       for (const image of await page.locator(selector).all()) {
         const box = await image.boundingBox();
         const ratio = await image.evaluate(
@@ -134,6 +153,7 @@ async function checkLayout(page, label, url, size) {
       ["research", "#academics"],
       ["coast", ".coast-photos"],
       ["practical", "#details"],
+      ["world-cup", "#world-cup"],
     ]) {
       await page
         .locator(selector)
@@ -151,7 +171,7 @@ async function signupScenario(context, name, response, expected) {
   await page.route("**/site-config.js", (route) =>
     route.fulfill({
       contentType: "application/javascript",
-      body: 'window.UFBrazilConfig = { signupEndpoint: "/test-signup" };',
+      body: 'window.UFBrazilConfig = Object.freeze({ signupEndpoint: "/test-signup", availability: Object.freeze({ places: 12, updated: "2026-10-03" }) });',
     }),
   );
   let sent = 0;
@@ -179,6 +199,11 @@ async function signupScenario(context, name, response, expected) {
   await page.getByRole("button", { name: "Send me more information" }).click();
   await page.getByRole("status").filter({ hasText: expected }).waitFor();
   assert.equal(sent, 1);
+  assert.equal(
+    await page.evaluate(() => window.UFBrazilConfig.availability.places),
+    12,
+    "Information requests must not reduce program availability",
+  );
   if (name !== "accepted")
     assert.equal(
       await page.locator("#email").inputValue(),
@@ -294,11 +319,18 @@ async function signupScenario(context, name, response, expected) {
   await configured.route("**/site-config.js", (route) =>
     route.fulfill({
       contentType: "application/javascript",
-      body: 'window.UFBrazilConfig = {programGuideUrl: "/assets/approved-guide.pdf", bookVisualUrl: "/assets/praia-do-forte-village.jpg", bookVisualAlt: "Approved visual test", bookVisualCaption: "Approved caption test"};',
+      body: 'window.UFBrazilConfig = {availability: {places: 1, updated: "2026-10-04"}, programGuideUrl: "/assets/approved-guide.pdf", bookVisualUrl: "/assets/praia-do-forte-village.jpg", bookVisualAlt: "Approved visual test", bookVisualCaption: "Approved caption test"};',
     }),
   );
   await configured.goto(base + "/");
   assert.equal(await configured.locator("[data-guide]:visible").count(), 2);
+  assert.deepEqual(
+    await configured.locator("[data-availability]").allTextContents(),
+    [
+      "1 place currently availableUpdated October 4, 2026",
+      "1 place currently availableUpdated October 4, 2026",
+    ],
+  );
   assert.equal(
     await configured.locator("[data-book-visual] img").getAttribute("alt"),
     "Approved visual test",

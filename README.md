@@ -29,6 +29,8 @@ Both attributions are visible in the footer. These images show the village, not 
 
 ## Checks
 
+Program availability is edited once in `site-config.js`: `availability.places` and its ISO `availability.updated` date. Use only actual availability confirmed by the program director. Both page displays share this configuration; information signups never decrement it. There is no availability feed or simulated update.
+
 Run `npx playwright install chromium`, then `npm run check`. Windows can use installed Edge with `$env:PLAYWRIGHT_CHANNEL='msedge'; npm run check`. The script starts and stops its own isolated local server. Screenshots and results are written under `docs/` and are excluded from the production Docker image.
 
 Run `npm run format` for formatting. The check suite verifies responsive layouts, automated accessibility, keyboard/reduced-motion behavior, and honest signup acknowledgement handling. No real email is sent in tests.

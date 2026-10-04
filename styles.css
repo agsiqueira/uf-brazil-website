@@ -462,6 +462,41 @@ dd {
 .academic-details {
   margin: 24px 0;
 }
+.availability {
+  font-size: 13px;
+  margin: 12px 0 0;
+}
+.availability strong,
+.availability span {
+  display: block;
+}
+.availability span {
+  font-size: 12px;
+  margin-top: 2px;
+}
+.world-cup {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: center;
+  background: #edf3f7;
+}
+.stadium-photo img {
+  height: auto;
+  object-fit: contain;
+}
+.stadium-photo figcaption {
+  font-size: 13px;
+  color: #4e625a;
+  margin-top: 8px;
+}
+.world-cup-copy > p {
+  margin: 18px 0;
+}
+.event-dates {
+  font-size: 14px;
+  font-weight: 600;
+}
 .academic-details .courses {
   margin-top: 12px;
   padding-top: 12px;
@@ -470,6 +505,13 @@ dd {
   grid-template-columns: 1fr 1fr;
 }
 @media (max-width: 760px) {
+  .world-cup {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .world-cup-copy {
+    grid-row: 1;
+  }
   .project-layout {
     grid-template-columns: 1fr;
     gap: 18px;
