@@ -1,40 +1,38 @@
-# UF in Brazil program website
+# UF in Brazil recruitment website
 
-A static, mobile-friendly site for **UF in Brazil - Cross-Cultural Engineering and Immersive Technologies for Industry 5.0**.
+A static seven-section recruitment page and information signup page for **UF in Brazil - Cross-Cultural Engineering and Immersive Technologies for Industry 5.0**.
 
-## Run locally
+## Preview
 
-From this directory, run `python3 -m http.server 8080`, then open `http://localhost:8080`.
+Install development tools with `npm ci`, then run `npm run preview` and open http://127.0.0.1:8081. For a dependency-free preview, `python -m http.server 8081 --bind 127.0.0.1` also works.
 
-## Deploy with Coolify
+The public site has no build step or runtime npm dependencies. HTML, CSS, JavaScript, and assets are served directly by nginx. npm packages are development-only tools for formatting, QR generation, and browser checks.
 
-1. Push this directory as the root of a GitHub repository.
-2. In the existing **UF-Brazil Website / production** environment, add an **Application** from the GitHub repository.
-3. Select the `main` branch, choose **Dockerfile** as the build pack, and keep port **80**.
-4. Set the application's domain to `https://uf-brazil.mixed.group`, deploy, and follow Coolify's displayed DNS instructions at your domain provider.
+## Configuration and release
 
-No environment variables or backend service are needed. The application button goes to UF Abroad's official program brochure.
+Public integration settings are in `site-config.js`. Signup stays unavailable until an approved acceptance endpoint is configured. Program guide links stay hidden until the approved PDF exists. Book visual settings replace the clearly labeled concept spread when final artwork is supplied. Never place credentials in public configuration or display signup success without service acceptance.
 
-## Content updates
+See [release dependencies and email setup](docs/RELEASE.md) before merging or deploying. This implementation is for PR review; it must not be deployed yet.
 
-- The page follows the Pelourinho project, interdisciplinary roles, life in Bahia, academics, and application details. Keep the invitation to all majors and the no-prior-VR-experience message visible in the hero and project section.
-- Project themes and formats are possibilities to develop with Brazilian collaborators, not confirmed exhibits. Keep that distinction when updating copy.
-- Practical details were checked against the live [UF Abroad brochure](https://ufabroad.internationalcenter.ufl.edu/_portal/tds-program-brochure?programid=14652) on September 27, 2026. The brochure remains the source of current terms.
-- The [Digital e Criativo campus page](https://senaicimatec.com.br/sobre-o-senai-cimatec/nossos-campi/cimatec-digital/) describes the partner's location and areas of work. SVR 2025's official [conference sponsorship prospectus](https://sibgrapi.sbc.org.br/2025/wp-content/uploads/2025/02/SVR-SIBGRAPI-SBGAMES-2025_Sponsorship-Proposal_English.pdf) identifies SENAI CIMATEC as the venue.
-- The `#enter-salvador` section links to the first Marble concept world. Check the link and loading behavior periodically and retain an accessible text description.
-- Add approved footage and Ingrid Winkler's invitation when available.
-- Verify the exact housing and partner site captions before publishing photos as documentary representations of those places.
-- Check program fee and deadline against the official UF Abroad brochure whenever they change.
+## Content and assets
 
-## Praia do Forte images
+Keep the approved sequence: opening, outcomes, project/roles, book, research/industry, coastal life/value, practical details/signup. Alex owns commitments and final messaging. The current copy includes the approved lasting exhibits, portfolio, language support, and full-stay housing commitments. Formats and role examples remain possibilities to develop with Brazilian collaborators.
 
-- `assets/praia-do-forte-lighthouse.jpg`: Tatiana Azeviche / Setur (Turismo Bahia), [source](https://commons.wikimedia.org/wiki/File:Praia_do_Forte._Foto_Tatiana_Azeviche_Setur_(8577174259).jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). Resized from the original to 1280 px wide.
+The original opening image, `Colorful street scene of Salvador, Brazil.jpg`, is retained and also appears in the official UF brochure. It depicts Pelourinho, not a student exhibit or partner facility.
+
+- `assets/praia-do-forte-lighthouse.jpg`: Tatiana Azeviche / Setur, [source](<https://commons.wikimedia.org/wiki/File:Praia_do_Forte._Foto_Tatiana_Azeviche_Setur_(8577174259).jpg>), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/), resized to 1280px.
 - `assets/praia-do-forte-village.jpg`: Glauco Umbelino, [source](https://commons.wikimedia.org/wiki/File:Praia_do_Forte-BA.jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
 
-Attribution and license links also appear in the site footer. These photographs show Praia do Forte; they do not depict the program hostel.
+Both attributions are visible in the footer. These images show the village, not the hostel. Other existing assets are retained in the repository but are not newly used without rights verification.
 
-The hero reuses the repository's `Colorful street scene of Salvador, Brazil.jpg`, also shown in the official UF Abroad brochure. It depicts Pelourinho, not a completed project exhibit or the partner's facilities.
+`assets/signup-qr.png` encodes `https://uf-brazil.mixed.group/signup.html`; regenerate with `node scripts/generate-qr.cjs` if that public destination changes. QR codes supplement clickable links.
 
-## Checking the page
+## Checks
 
-There is no build step or JavaScript dependency. Serve the site locally and check the hero, project, courses, and practical details at desktop, tablet, and phone widths. Navigation, application links, and native disclosure controls work without JavaScript. Verify that disclosures also work with the keyboard and that narrow layouts do not scroll horizontally. Honor the system's reduced-motion preference when changing animation.
+Run `npx playwright install chromium`, then `npm run check`. Windows can use installed Edge with `$env:PLAYWRIGHT_CHANNEL='msedge'; npm run check`. The script starts and stops its own isolated local server. Screenshots and results are written under `docs/` and are excluded from the production Docker image.
+
+Run `npm run format` for formatting. The check suite verifies responsive layouts, automated accessibility, keyboard/reduced-motion behavior, and honest signup acknowledgement handling. No real email is sent in tests.
+
+## Existing deployment
+
+The existing Coolify production application uses the repository's `main` branch, the Dockerfile build pack, port 80, and `https://uf-brazil.mixed.group`. The Dockerfile copies only public site files and assets. Changes in this review branch must not be merged or deployed until authorized.

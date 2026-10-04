@@ -1,0 +1,31 @@
+## Change
+
+The previous recruitment page delayed the opening image on phones, repeated the all-majors invitation, and directed every main action to application. This revision presents seven concise sections: opening, outcomes, project/roles, book participation, research/industry, coastal life/value, and practical details/signup.
+
+Preserves the opening image, cleared coastal photographs with attribution, official application link, useful cultural resources, keyboard disclosures, skip link, and reduced motion. Adds the approved Ford and English-language context, full-stay hostel coverage, visible prices, two visible video previews, and opening/closing QR codes. The book spread is explicitly labeled concept artwork.
+
+The separate signup page requires only email. It stays disabled until a service is configured; success requires HTTP success plus an explicit `accepted: true` acknowledgement. The forthcoming guide has hidden configuration hooks, with no dead download links.
+
+## Validation
+
+- `npm run check` in Chromium-based Edge: 1440px desktop, 820px tablet, 390px and 320px phones; signup desktop/phone.
+- No horizontal overflow, missing internal anchors, unloaded images, or automated WCAG A/AA axe violations in checked layouts.
+- Opening photograph enters the first phone screen; book appears in the first half of the page.
+- Keyboard skip link/disclosures and reduced motion verified.
+- Email-only validation and accepted/rejected/ambiguous-200/network-failure flows verified using local fixtures, without real mail.
+- Guide and approved-book visual integration hooks verified using local fixtures.
+- `git diff --check`; dependency audit found no vulnerabilities during installation.
+- Docker build and production email delivery were not tested.
+
+## Screenshots
+
+![Desktop opening](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/desktop-opening.png)
+![Phone opening](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/phone-opening.png)
+![Tablet book feature](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/tablet-book.png)
+![Phone signup](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/signup-phone.png)
+
+Full responsive captures and machine-readable results are in `docs/screenshots/` and `docs/checks.json`.
+
+## Release Dependencies
+
+Keep this PR unmerged and undeployed. Configure an approved signup service and email provider; supply the approved program guide and final book artwork. Align the official brochure's accommodation-inclusions wording with the approved full-stay housing commitment. See [release notes](https://github.com/agsiqueira/uf-brazil-website/blob/codex/recruitment-seven-section/docs/RELEASE.md) for configuration, acceptance contract, content provenance, and verification limits.

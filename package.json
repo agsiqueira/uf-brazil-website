@@ -1,0 +1,15 @@
+{
+  "name": "uf-brazil-website",
+  "private": true,
+  "scripts": {
+    "preview": "node scripts/preview.cjs",
+    "check": "node --check site.js && node --check site-config.js && node scripts/check.cjs",
+    "format": "prettier --write index.html signup.html styles.css site.js site-config.js scripts/*.cjs README.md docs/*.md"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "playwright": "1.58.2",
+    "prettier": "3.8.1",
+    "qrcode": "1.5.4"
+  }
+}
