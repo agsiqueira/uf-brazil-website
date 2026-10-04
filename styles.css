@@ -231,6 +231,41 @@ textarea:focus-visible {
 .button:hover {
   background: #285653;
 }
+.button-apply {
+  background: #a9341d;
+}
+.button-apply:hover {
+  background: #812711;
+}
+.header-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.header-actions .button {
+  padding: 10px 12px;
+  min-height: 44px;
+  font-size: 13px;
+}
+.hero-bottom .guide-link {
+  flex-basis: 100%;
+}
+@media (max-width: 1100px) {
+  .header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .header-actions .button {
+    flex: 1 1 auto;
+  }
+}
+@media (max-width: 600px) {
+  .hero-bottom .actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
 .button:disabled {
   background: #697873;
   cursor: not-allowed;

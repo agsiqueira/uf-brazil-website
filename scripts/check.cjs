@@ -94,6 +94,25 @@ async function checkLayout(page, label, url, size) {
         `${label}: photo below first screen`,
       );
     assert.equal(await page.locator("[data-guide]:visible").count(), 2);
+    const applicationUrl =
+      "https://ufabroad.internationalcenter.ufl.edu/_portal/tds-program-brochure?programid=14652";
+    for (const group of [".header-actions", ".hero-bottom .actions"]) {
+      const actions = page.locator(`${group} a.button`);
+      assert.equal(await actions.count(), 2);
+      for (const action of await actions.all()) {
+        assert(await action.isVisible());
+        await action.focus();
+        assert(await action.evaluate((el) => el === document.activeElement));
+      }
+      assert.equal(
+        await actions.filter({ hasText: "Apply here" }).getAttribute("href"),
+        applicationUrl,
+      );
+    }
+    assert.equal(
+      await page.locator(`#details a[href="${applicationUrl}"]`).count(),
+      1,
+    );
     assert.equal(await page.locator(".video-preview").count(), 2);
     const heroImage = page.locator(".hero-photo img");
     const displayed = await heroImage.boundingBox();
