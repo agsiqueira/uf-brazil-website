@@ -435,7 +435,45 @@ dd {
   max-width: 650px;
 }
 .research .language {
-  font-weight: 600;
+  font-size: 14px;
+}
+.project-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 36px;
+  align-items: center;
+}
+.project-intro .lead,
+.research-intro > div > p {
+  margin-top: 18px;
+}
+.project-photo img {
+  height: auto;
+  object-fit: contain;
+}
+.project-photo figcaption {
+  font-size: 13px;
+  color: #4e625a;
+  margin-top: 8px;
+}
+.research-intro {
+  max-width: 900px;
+}
+.academic-details {
+  margin: 24px 0;
+}
+.academic-details .courses {
+  margin-top: 12px;
+  padding-top: 12px;
+}
+.practical .included {
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 760px) {
+  .project-layout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
 }
 .research-evidence,
 .culture {
@@ -537,17 +575,16 @@ dd {
   margin: 28px 0;
 }
 .coast-photos img {
-  height: 300px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 .coast-photos figcaption {
   font-size: 12px;
   margin-top: 8px;
 }
 .housing {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 30px;
+  max-width: 760px;
+  margin-bottom: 12px;
 }
 .included {
   display: grid;
@@ -897,9 +934,6 @@ footer {
     flex-direction: column;
     gap: 18px;
   }
-  .coast-photos img {
-    height: 230px;
-  }
   .included {
     grid-template-columns: 1fr 1fr;
   }
@@ -993,9 +1027,6 @@ footer {
   .coast-photos {
     grid-template-columns: 1fr;
     gap: 16px;
-  }
-  .coast-photos img {
-    height: 235px;
   }
   .courses {
     grid-template-columns: 1fr;

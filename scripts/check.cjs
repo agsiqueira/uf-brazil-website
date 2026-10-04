@@ -74,6 +74,34 @@ async function checkLayout(page, label, url, size) {
       "AI-generated concept visualization inspired by Pelourinho.",
     );
     assert.equal(await page.locator(".video-player").count(), 0);
+    for (const selector of [".project-photo img", ".coast-photos img"]) {
+      for (const image of await page.locator(selector).all()) {
+        const box = await image.boundingBox();
+        const ratio = await image.evaluate(
+          (img) => img.naturalWidth / img.naturalHeight,
+        );
+        assert(
+          Math.abs(box.width / box.height - ratio) < 0.01,
+          `${label}: ${selector} cropped`,
+        );
+      }
+    }
+    assert.equal(
+      await page.locator("#life .included, #academics .courses").count(),
+      0,
+    );
+    assert.equal(
+      await page.locator("#details .included, #details .courses").count(),
+      2,
+    );
+    if (size.width <= 760) {
+      const intro = await page.locator(".project-intro").boundingBox();
+      const photo = await page.locator(".project-photo").boundingBox();
+      assert(
+        photo.y >= intro.y + intro.height &&
+          photo.y - intro.y - intro.height <= 20,
+      );
+    }
     assert.equal(
       await page
         .locator('.qr a[href="https://ufinbrazil.mixed.group/"]')
@@ -101,6 +129,16 @@ async function checkLayout(page, label, url, size) {
     await page
       .locator("#book")
       .screenshot({ path: path.join(output, label + "-book.png") });
+    for (const [name, selector] of [
+      ["project", "#project"],
+      ["research", "#academics"],
+      ["coast", ".coast-photos"],
+      ["practical", "#details"],
+    ]) {
+      await page
+        .locator(selector)
+        .screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    }
   }
   report.push({
     label,

@@ -27,6 +27,14 @@ The opening now uses the approved AI-generated immersive-project scene from the 
 
 ## Screenshots
 
+Latest refinement adds the supplied project concept image, preserves natural coastal image proportions, combines housing, moves inclusions beside fees and courses into Academics, and consolidates research evidence/English support without increasing page text. Responsive crop/order assertions pass. Real HTTP playback in Edge was verified through advancing clocks and successful media responses with the correct Referer; Error 153 was not reproduced. The in-app browser also played both videos. The older public HTTPS page has no click-to-load players, so this PR's deployed HTTPS playback remains unverified. Request/header/context evidence is in `docs/video-verification.json`; see release notes for diagnosis and follow-up.
+
+![Desktop project](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/desktop-project.png)
+![Phone project](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/phone-project.png)
+![Desktop coastal crops](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/desktop-coast.png)
+![Desktop research](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/desktop-research.png)
+![Phone practical details](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/phone-practical.png)
+
 ![Desktop opening](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/desktop-opening.png)
 ![Phone opening](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/phone-opening.png)
 ![Tablet book feature](https://raw.githubusercontent.com/agsiqueira/uf-brazil-website/codex/recruitment-seven-section/docs/screenshots/tablet-book.png)
