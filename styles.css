@@ -466,6 +466,52 @@ dd {
   font-size: 13px;
   margin: 12px 0 0;
 }
+.ayush {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 18px 36px;
+  background: #eef2ec;
+}
+.ayush h2 {
+  grid-column: 2;
+  font-size: 29px;
+}
+.ayush-portrait {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 100%;
+  height: auto;
+  align-self: center;
+}
+.ayush-copy {
+  grid-column: 2;
+  max-width: 800px;
+}
+.ayush-credentials {
+  font-size: 14px;
+  margin: 16px 0;
+}
+.ayush-credentials span {
+  display: block;
+}
+.ayush-video {
+  margin-top: 18px;
+}
+.ayush-video video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background: #111;
+}
+.invitation-play {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 12px 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
 .availability strong,
 .availability span {
   display: block;
@@ -505,6 +551,20 @@ dd {
   grid-template-columns: 1fr 1fr;
 }
 @media (max-width: 760px) {
+  .ayush {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .ayush h2,
+  .ayush-copy,
+  .ayush-portrait {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .ayush-portrait {
+    width: 180px;
+    max-width: 100%;
+  }
   .world-cup {
     grid-template-columns: 1fr;
     gap: 20px;

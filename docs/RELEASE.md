@@ -44,7 +44,13 @@ Alex supplied `Updated Author Credit Book Mockup.png`, now included as `assets/b
 - Opening and closing QR codes now point to the main website, `https://ufinbrazil.mixed.group/`.
 - Pelourinho is identified as part of Salvador's UNESCO-listed Historic Centre, with the UNESCO listing linked. The SVR 2025 host reference is supported by the official SBC conference documentation and https://comissoes.sbc.org.br/ce-rv/ . Dr. Alexandre Siqueira and his Summer 2026 course are named in the English-support evidence.
 
-## Verification
+## Ayush Feature
+
+The supplied portrait is stored as `assets/ayush-bhargava.png` (350 x 412), displayed without face cropping after research and before coastal life. The introduction and credentials are director-supplied facts. Meta Reality Labs is named only as an affiliation; no logo or employer endorsement appears. The proposed first-person headline, script, and attributed quotes are not shipped in the public page or configuration.
+
+In `site-config.js`, keep `ayushInvitation.approved: false` until Ayush approves the recording and accompanying copy. Supply `videoUrl` (browser-supported recording, such as MP4), `captionsUrl` (English WebVTT), and the approved plain-text `transcript`; all three are required before the video slot appears. An optional approved `headline` can replace the neutral headline only after that same gate passes. Host assets under `assets/` preferably; external media/captions must support anonymous CORS. The action reads "Watch Ayush's invitation · 30 seconds"; verify the approved recording's duration before enabling. Activation creates a native player with controls, default captions, and an expandable transcript. Real playback/caption synchronization remains a release check because the recording has not been supplied. Fixture checks cover gating and controls only.
+
+## Responsive Checks
 
 Availability is the director-supplied snapshot of 12 places, updated October 3, 2026. Maintain `availability.places` and `availability.updated` together in `site-config.js` from actual program availability; no booking-system integration is configured. Information requests do not reserve places or change this number. Both opening and closing displays use the same snapshot.
 

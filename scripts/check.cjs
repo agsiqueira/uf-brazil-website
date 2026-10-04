@@ -48,7 +48,13 @@ async function checkLayout(page, label, url, size) {
   assert.deepEqual(metrics.broken, [], `${label}: broken images`);
   assert.deepEqual(metrics.missingAnchors, [], `${label}: missing anchors`);
   if (url === "/") {
-    assert.equal(await page.locator("main > section").count(), 8);
+    assert.equal(await page.locator("main > section").count(), 9);
+    assert.equal(await page.locator("#academics + #ayush + #life").count(), 1);
+    assert.equal(await page.locator("[data-ayush-video]:visible").count(), 0);
+    assert.equal(
+      await page.locator("#ayush-title").innerText(),
+      "Meet Dr. Ayush Bhargava.",
+    );
     assert.deepEqual(
       await page.locator("[data-availability]:visible").allTextContents(),
       [
@@ -93,6 +99,7 @@ async function checkLayout(page, label, url, size) {
       ".project-photo img",
       ".coast-photos img",
       ".stadium-photo img",
+      ".ayush-portrait",
     ]) {
       for (const image of await page.locator(selector).all()) {
         const box = await image.boundingBox();
@@ -154,6 +161,7 @@ async function checkLayout(page, label, url, size) {
       ["coast", ".coast-photos"],
       ["practical", "#details"],
       ["world-cup", "#world-cup"],
+      ["ayush", "#ayush"],
     ]) {
       await page
         .locator(selector)
@@ -336,6 +344,57 @@ async function signupScenario(context, name, response, expected) {
     "Approved visual test",
   );
   report.push({ configuredIntegrationPoints: "passed (local fixtures only)" });
+  const invitationPage = await context.newPage();
+  let approved = false;
+  await invitationPage.route("**/site-config.js", (route) =>
+    route.fulfill({
+      contentType: "application/javascript",
+      body: `window.UFBrazilConfig = {ayushInvitation: {approved: ${approved}, headline: "Approved test headline", videoUrl: "/assets/test-invitation.mp4", captionsUrl: "/assets/test-captions.vtt", transcript: "Approved transcript fixture"}};`,
+    }),
+  );
+  await invitationPage.goto(base + "/");
+  assert.equal(
+    await invitationPage.locator("[data-ayush-video]:visible").count(),
+    0,
+  );
+  assert.equal(
+    await invitationPage.locator("#ayush-title").innerText(),
+    "Meet Dr. Ayush Bhargava.",
+  );
+  approved = true;
+  await invitationPage.reload();
+  assert.equal(
+    await invitationPage.locator("#ayush-title").innerText(),
+    "Approved test headline",
+  );
+  assert.equal(
+    await invitationPage.locator("#ayush video").count(),
+    0,
+    "Recording must load only on activation",
+  );
+  await invitationPage
+    .getByRole("button", { name: "Watch Ayush's invitation" })
+    .click();
+  assert.equal(
+    await invitationPage.locator("#ayush video[controls]").count(),
+    1,
+  );
+  assert.equal(
+    await invitationPage
+      .locator('#ayush track[kind="captions"][srclang="en"]')
+      .count(),
+    1,
+  );
+  await invitationPage.getByText("Transcript", { exact: true }).click();
+  assert.equal(
+    await invitationPage.getByText("Approved transcript fixture").isVisible(),
+    true,
+  );
+  report.push({
+    ayushInvitation:
+      "Approval gate and click-to-play/captions/transcript structure passed (fixtures only; recording not supplied)",
+  });
+  await invitationPage.close();
   fs.writeFileSync(
     path.join(root, "docs", "checks.json"),
     JSON.stringify(report, null, 2) + "\n",

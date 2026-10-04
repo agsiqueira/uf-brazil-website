@@ -61,6 +61,56 @@
     }
   };
   const guide = safeUrl(config.programGuideUrl);
+  const invitation = config.ayushInvitation;
+  const invitationSlot = document.querySelector("[data-ayush-video]");
+  const invitationVideo = safeUrl(invitation?.videoUrl);
+  const invitationCaptions = safeUrl(invitation?.captionsUrl);
+  if (
+    invitationSlot &&
+    invitation?.approved === true &&
+    invitationVideo &&
+    invitationCaptions &&
+    typeof invitation.transcript === "string" &&
+    invitation.transcript.trim()
+  ) {
+    if (typeof invitation.headline === "string" && invitation.headline.trim())
+      document.querySelector("#ayush-title").textContent = invitation.headline;
+    const play = document.createElement("button");
+    play.type = "button";
+    play.className = "invitation-play";
+    play.textContent = "Watch Ayush's invitation \u00b7 30 seconds";
+    const transcript = document.createElement("details");
+    const summary = document.createElement("summary");
+    summary.textContent = "Transcript";
+    const text = document.createElement("p");
+    text.textContent = invitation.transcript;
+    transcript.append(summary, text);
+    play.addEventListener(
+      "click",
+      () => {
+        const video = document.createElement("video");
+        video.controls = true;
+        video.crossOrigin = "anonymous";
+        video.playsInline = true;
+        video.preload = "metadata";
+        video.src = invitationVideo;
+        video.setAttribute("aria-label", "Ayush's invitation");
+        const captions = document.createElement("track");
+        captions.kind = "captions";
+        captions.src = invitationCaptions;
+        captions.srclang = "en";
+        captions.label = "English";
+        captions.default = true;
+        video.append(captions);
+        play.replaceWith(video);
+        video.focus();
+        video.play().catch(() => {});
+      },
+      { once: true },
+    );
+    invitationSlot.replaceChildren(play, transcript);
+    invitationSlot.hidden = false;
+  }
   if (guide)
     document.querySelectorAll("[data-guide]").forEach((link) => {
       link.href = guide;
