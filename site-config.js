@@ -19,7 +19,7 @@ window.UFBrazilConfig = Object.freeze({
     transcript: null,
     durationSeconds: null,
   }),
-  programGuideUrl: null,
+  programGuideUrl: "assets/program-guide.pdf",
   bookVisualUrl: "assets/book-cover-mockup.png",
   bookVisualAlt:
     "Concept cover mockup of Virtual Reality & Immersive Storytelling: Designing Experiences That Engage, Educate, and Inspire, credited to Dr. Alexandre G. de Siqueira, MBA, PhD",

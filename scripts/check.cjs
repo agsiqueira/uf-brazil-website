@@ -93,7 +93,7 @@ async function checkLayout(page, label, url, size) {
         metrics.photoTop < size.height,
         `${label}: photo below first screen`,
       );
-    assert.equal(await page.locator("[data-guide]:visible").count(), 0);
+    assert.equal(await page.locator("[data-guide]:visible").count(), 2);
     assert.equal(await page.locator(".video-preview").count(), 2);
     const heroImage = page.locator(".hero-photo img");
     const displayed = await heroImage.boundingBox();
