@@ -25,7 +25,7 @@ The original opening image, `Colorful street scene of Salvador, Brazil.jpg`, is 
 
 Both attributions are visible in the footer. These images show the village, not the hostel. Other existing assets are retained in the repository but are not newly used without rights verification.
 
-`assets/signup-qr.png` encodes `https://uf-brazil.mixed.group/signup.html`; regenerate with `node scripts/generate-qr.cjs` if that public destination changes. QR codes supplement clickable links.
+`assets/signup-qr.png` encodes `https://uf-brazil.mixed.group/`; regenerate with `node scripts/generate-qr.cjs` if that public destination changes. Opening and closing QR codes point to the main website and supplement clickable links.
 
 ## Checks
 

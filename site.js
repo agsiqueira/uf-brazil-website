@@ -1,5 +1,27 @@
 (() => {
   const config = window.UFBrazilConfig || {};
+  document.querySelectorAll("[data-video]").forEach((link) => {
+    const id = link.dataset.video;
+    if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = link.className;
+    button.setAttribute("aria-label", link.getAttribute("aria-label"));
+    button.append(...link.childNodes);
+    link.replaceWith(button);
+    button.addEventListener("click", () => {
+      const player = document.createElement("iframe");
+      player.className = "video-player";
+      player.title = link.dataset.videoTitle;
+      player.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1`;
+      player.allow =
+        "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      player.allowFullscreen = true;
+      player.referrerPolicy = "strict-origin-when-cross-origin";
+      button.replaceWith(player);
+      player.focus();
+    });
+  });
   const safeUrl = (value) => {
     if (typeof value !== "string" || !value.trim()) return null;
     try {

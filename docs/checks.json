@@ -3,9 +3,9 @@
     "label": "desktop",
     "width": 1440,
     "scrollWidth": 1440,
-    "height": 5446,
+    "height": 5447,
     "photoTop": 116,
-    "bookTop": 1611.3125,
+    "bookTop": 1612.90625,
     "broken": [],
     "missingAnchors": [],
     "accessibilityViolations": 0
@@ -14,9 +14,9 @@
     "label": "tablet",
     "width": 820,
     "scrollWidth": 820,
-    "height": 5705,
+    "height": 5829,
     "photoTop": 116,
-    "bookTop": 1829.296875,
+    "bookTop": 1806.890625,
     "broken": [],
     "missingAnchors": [],
     "accessibilityViolations": 0
@@ -25,9 +25,9 @@
     "label": "phone",
     "width": 390,
     "scrollWidth": 390,
-    "height": 8292,
+    "height": 8411,
     "photoTop": 303.984375,
-    "bookTop": 2453.84375,
+    "bookTop": 2457.03125,
     "broken": [],
     "missingAnchors": [],
     "accessibilityViolations": 0
@@ -36,9 +36,9 @@
     "label": "small-phone",
     "width": 320,
     "scrollWidth": 320,
-    "height": 9046,
+    "height": 9222,
     "photoTop": 324.78125,
-    "bookTop": 2647.34375,
+    "bookTop": 2650.53125,
     "broken": [],
     "missingAnchors": [],
     "accessibilityViolations": 0
@@ -60,6 +60,9 @@
     "broken": [],
     "missingAnchors": [],
     "accessibilityViolations": 0
+  },
+  {
+    "clickToLoadPlayers": "passed (local iframe fixtures; no real playback asserted)"
   },
   {
     "signupScenario": "accepted",

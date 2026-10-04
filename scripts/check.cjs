@@ -57,6 +57,13 @@ async function checkLayout(page, label, url, size) {
       );
     assert.equal(await page.locator("[data-guide]:visible").count(), 0);
     assert.equal(await page.locator(".video-preview").count(), 2);
+    assert.equal(await page.locator(".video-player").count(), 0);
+    assert.equal(
+      await page
+        .locator('.qr a[href="https://uf-brazil.mixed.group/"]')
+        .count(),
+      2,
+    );
   }
   const a11y = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -158,6 +165,40 @@ async function signupScenario(context, name, response, expected) {
       .isDisabled(),
   );
   assert.match(await page.getByRole("status").innerText(), /not available/);
+  await page.goto(base + "/");
+  await page.route("https://www.youtube-nocookie.com/embed/**", (route) =>
+    route.fulfill({
+      contentType: "text/html",
+      body: "<!doctype html><title>Local player fixture</title><p>Player integration test</p>",
+    }),
+  );
+  const initialUrl = page.url();
+  for (const [title, id] of [
+    ["Meet SENAI CIMATEC", "5Fza7_oQT28"],
+    ["Explore Salvador", "ia_2SHV88Q0"],
+  ]) {
+    const trigger = page.getByRole("button", { name: "Play " + title });
+    const before = await trigger.boundingBox();
+    await trigger.focus();
+    await page.keyboard.press("Enter");
+    const player = page.locator(`iframe[title="${title}"]`);
+    await player.waitFor();
+    assert.match(
+      await player.getAttribute("src"),
+      new RegExp(`youtube-nocookie.com/embed/${id}`),
+    );
+    assert.equal(page.url(), initialUrl);
+    const after = await player.boundingBox();
+    assert(
+      Math.abs(before.height - after.height) < 2,
+      "Player should not shift layout",
+    );
+  }
+  assert.equal(await page.locator(".video-fallback").count(), 2);
+  report.push({
+    clickToLoadPlayers:
+      "passed (local iframe fixtures; no real playback asserted)",
+  });
   await page.goto(base + "/");
   await page.keyboard.press("Tab");
   assert.equal(await page.locator(":focus").innerText(), "Skip to content");
