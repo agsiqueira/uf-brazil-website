@@ -228,7 +228,7 @@ async function checkLayout(page, label, url, size) {
 }
 async function signupScenario(context, name, response, expected) {
   const page = await context.newPage();
-  await page.route("**/site-config.js", (route) =>
+  await page.route(/\/site-config\.js(?:\?.*)?$/, (route) =>
     route.fulfill({
       contentType: "application/javascript",
       body: 'window.UFBrazilConfig = Object.freeze({ signupEndpoint: "/test-signup", availability: Object.freeze({ places: 12, updated: "2026-10-03" }) });',
@@ -376,7 +376,7 @@ async function signupScenario(context, name, response, expected) {
     "could not confirm",
   );
   const configured = await context.newPage();
-  await configured.route("**/site-config.js", (route) =>
+  await configured.route(/\/site-config\.js(?:\?.*)?$/, (route) =>
     route.fulfill({
       contentType: "application/javascript",
       body: 'window.UFBrazilConfig = {availability: {places: 1, updated: "2026-10-04"}, programGuideUrl: "/assets/approved-guide.pdf", bookVisualUrl: "/assets/praia-do-forte-village.jpg", bookVisualAlt: "Approved visual test", bookVisualCaption: "Approved caption test"};',
@@ -398,7 +398,7 @@ async function signupScenario(context, name, response, expected) {
   report.push({ configuredIntegrationPoints: "passed (local fixtures only)" });
   const invitationPage = await context.newPage();
   let approved = false;
-  await invitationPage.route("**/site-config.js", (route) =>
+  await invitationPage.route(/\/site-config\.js(?:\?.*)?$/, (route) =>
     route.fulfill({
       contentType: "application/javascript",
       body: `window.UFBrazilConfig = {ayushInvitation: {approved: ${approved}, headline: "Approved test headline", videoUrl: "/assets/test-invitation.mp4", captionsUrl: "/assets/test-captions.vtt", transcript: "Approved transcript fixture", durationSeconds: 31}, leandroInvitation: {approved: ${approved}, headline: "Approved Leandro headline", videoUrl: "/assets/test-invitation.mp4", captionsUrl: "/assets/test-captions.vtt", transcript: "Leandro transcript fixture", durationSeconds: 42}};`,
