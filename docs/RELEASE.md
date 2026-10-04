@@ -31,7 +31,7 @@ The approved PDF is forthcoming. `programGuideUrl` is null and both download int
 
 ## Book imagery
 
-The visible book spread is a labeled HTML/CSS concept using the existing Pelourinho photograph and bracketed credit examples. It claims neither approved design nor completed student work. Final approved cover/spread imagery is forthcoming. Set `bookVisualUrl`, `bookVisualAlt`, and `bookVisualCaption` together to replace the concept; leave the participation invitation and editorial qualification intact. Final imagery is a content release dependency, not a broken integration.
+Alex supplied `Updated Author Credit Book Mockup.png`, now included as `assets/book-cover-mockup.png`. The author-credit mockup replaces the earlier illustrative spread, including without JavaScript. It remains labeled as a concept cover preview; final publication design may change. `bookVisualUrl`, `bookVisualAlt`, and `bookVisualCaption` are configured for this supplied asset. Future final artwork can replace it through these settings. The website book-mockup dependency is fulfilled; final publication artwork approval remains distinct from this preview. Participation copy and the editorial qualification remain intact.
 
 ## Content provenance
 

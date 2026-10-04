@@ -6,6 +6,8 @@ Preserves the opening image, cleared coastal photographs with attribution, offic
 
 The separate signup page requires only email. It stays disabled until a service is configured; success requires HTTP success plus an explicit `accepted: true` acknowledgement. The forthcoming guide has hidden configuration hooks, with no dead download links.
 
+Alex's supplied author-credit book mockup now replaces the initial sample spread, with a concept-cover caption and accessible description. The website mockup dependency is fulfilled.
+
 ## Validation
 
 - `npm run check` in Chromium-based Edge: 1440px desktop, 820px tablet, 390px and 320px phones; signup desktop/phone.
@@ -30,4 +32,4 @@ Full responsive captures and machine-readable results are in `docs/screenshots/`
 
 ## Release Dependencies
 
-Keep this PR unmerged and undeployed. Configure an approved signup service and email provider; supply the approved program guide and final book artwork. Align the official brochure's accommodation-inclusions wording with the approved full-stay housing commitment. See [release notes](https://github.com/agsiqueira/uf-brazil-website/blob/codex/recruitment-seven-section/docs/RELEASE.md) for configuration, acceptance contract, content provenance, and verification limits.
+Keep this PR unmerged and undeployed. Configure an approved signup service and email provider; supply the approved program guide. The supplied book mockup is integrated as a concept cover preview. Align the official brochure's accommodation-inclusions wording with the approved full-stay housing commitment. See [release notes](https://github.com/agsiqueira/uf-brazil-website/blob/codex/recruitment-seven-section/docs/RELEASE.md) for configuration, acceptance contract, content provenance, and verification limits.
