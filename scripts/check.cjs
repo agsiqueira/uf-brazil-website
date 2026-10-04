@@ -49,6 +49,8 @@ async function checkLayout(page, label, url, size) {
   assert.deepEqual(metrics.missingAnchors, [], `${label}: missing anchors`);
   if (url === "/") {
     assert.equal(await page.locator("main > section").count(), 9);
+    assert.equal(await page.locator("main > section:visible").count(), 8);
+    assert.equal(await page.locator("#ayush").isVisible(), false);
     assert.equal(await page.locator("#academics + #ayush + #life").count(), 1);
     assert.equal(await page.locator('#ayush a[href="signup.html"]').count(), 0);
     assert.equal(await page.locator("[data-ayush-video]:visible").count(), 0);
@@ -100,7 +102,6 @@ async function checkLayout(page, label, url, size) {
       ".project-photo img",
       ".coast-photos img",
       ".stadium-photo img",
-      ".ayush-portrait",
     ]) {
       for (const image of await page.locator(selector).all()) {
         const box = await image.boundingBox();
@@ -162,7 +163,6 @@ async function checkLayout(page, label, url, size) {
       ["coast", ".coast-photos"],
       ["practical", "#details"],
       ["world-cup", "#world-cup"],
-      ["ayush", "#ayush"],
     ]) {
       await page
         .locator(selector)
@@ -364,6 +364,14 @@ async function signupScenario(context, name, response, expected) {
   );
   approved = true;
   await invitationPage.reload();
+  assert.equal(
+    await invitationPage.locator("#ayush").isVisible(),
+    false,
+    "The testimonial remains hidden even if recording configuration is approved",
+  );
+  await invitationPage
+    .locator("#ayush")
+    .evaluate((section) => (section.hidden = false));
   assert.equal(
     await invitationPage.locator("#ayush-title").innerText(),
     "Approved test headline",
