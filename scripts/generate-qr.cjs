@@ -1,5 +1,5 @@
 const QRCode = require("qrcode");
-QRCode.toFile("assets/signup-qr.png", "https://uf-brazil.mixed.group/", {
+QRCode.toFile("assets/signup-qr.png", "https://ufinbrazil.mixed.group/", {
   width: 360,
   margin: 4,
   errorCorrectionLevel: "M",

@@ -76,7 +76,7 @@ async function checkLayout(page, label, url, size) {
     assert.equal(await page.locator(".video-player").count(), 0);
     assert.equal(
       await page
-        .locator('.qr a[href="https://uf-brazil.mixed.group/"]')
+        .locator('.qr a[href="https://ufinbrazil.mixed.group/"]')
         .count(),
       2,
     );

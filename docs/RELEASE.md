@@ -8,7 +8,7 @@ The repository contains a static nginx application. No signup backend, SMTP tran
 
 `signup.html` requires only email. Name, major, and interests are optional. Until a service is configured, submission stays disabled with a readable explanation and a working mailto alternative. No data is stored in browser storage and no request is sent to an unconfigured destination.
 
-Set `signupEndpoint` in `site-config.js` only after connecting an approved HTTPS service. Prefer a same-origin `/api/signup` endpoint routed to a backend; nginx's static container alone cannot accept these requests. An external endpoint must allow CORS from `https://uf-brazil.mixed.group` (including the JSON POST preflight). No provider secrets belong in `site-config.js`.
+Set `signupEndpoint` in `site-config.js` only after connecting an approved HTTPS service. Prefer a same-origin `/api/signup` endpoint routed to a backend; nginx's static container alone cannot accept these requests. An external endpoint must allow CORS from `https://ufinbrazil.mixed.group` (including the JSON POST preflight). No provider secrets belong in `site-config.js`.
 
 Request contract:
 
@@ -41,7 +41,7 @@ Alex supplied `Updated Author Credit Book Mockup.png`, now included as `assets/b
 - Ford's September 23, 2026 official article confirms its Development and Technology Center at CIMATEC Park in Camacari: https://www.fromtheroad.ford.com/br/pt/articles/2026/ford-abre-as-portas-de-seu-centro-tecnologico-na-bahia-para-a-19 . This is an ecosystem connection, not a confirmed Ford meeting or endorsement. No Ford logo is used. Visit arrangements can be added to the practical disclosure once confirmed.
 - The opening uses the approved AI-generated immersive-project visualization extracted from page 1 of the latest `UF-Brazil-Program-Guide (1).pdf` supplied in Downloads (October 3, 2026). It is stored as `assets/pelourinho-immersive-concept.png`, with the requested AI-generated concept caption. The entire image is shown on desktop and mobile to retain students, projections, and prototyping; the caption sits below the image. The original Pelourinho photograph is preserved as authentic destination imagery in coastal life, as well as on the signup page. Praia do Forte lighthouse and village photo attributions and license links remain in the footer. Scenic photographs are not labeled as hostel images. Other repository photographs without documented clearance are not introduced into the new page.
 - Two visible video previews load titled YouTube privacy-enhanced embedded players only when clicked. Keyboard activation works and YouTube links remain available as a fallback, including without JavaScript. Supplementary SENAI, Bahia, Ilha dos Frades, and Gainesville resources are retained. Preview images and fonts depend on external services.
-- Opening and closing QR codes now point to the main website, `https://uf-brazil.mixed.group/`.
+- Opening and closing QR codes now point to the main website, `https://ufinbrazil.mixed.group/`.
 - Pelourinho is identified as part of Salvador's UNESCO-listed Historic Centre, with the UNESCO listing linked. The SVR 2025 host reference is supported by the official SBC conference documentation and https://comissoes.sbc.org.br/ce-rv/ . Dr. Alexandre Siqueira and his Summer 2026 course are named in the English-support evidence.
 
 ## Verification

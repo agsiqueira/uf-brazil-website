@@ -25,7 +25,7 @@ The opening uses `assets/pelourinho-immersive-concept.png`, the approved AI-gene
 
 Both attributions are visible in the footer. These images show the village, not the hostel. Other existing assets are retained in the repository but are not newly used without rights verification.
 
-`assets/signup-qr.png` encodes `https://uf-brazil.mixed.group/`; regenerate with `node scripts/generate-qr.cjs` if that public destination changes. Opening and closing QR codes point to the main website and supplement clickable links.
+`assets/signup-qr.png` encodes `https://ufinbrazil.mixed.group/`; regenerate with `node scripts/generate-qr.cjs` if that public destination changes. Opening and closing QR codes point to the main website and supplement clickable links.
 
 ## Checks
 
@@ -35,4 +35,4 @@ Run `npm run format` for formatting. The check suite verifies responsive layouts
 
 ## Existing deployment
 
-The existing Coolify production application uses the repository's `main` branch, the Dockerfile build pack, port 80, and `https://uf-brazil.mixed.group`. The Dockerfile copies only public site files and assets. Changes in this review branch must not be merged or deployed until authorized.
+The existing Coolify production application uses the repository's `main` branch, the Dockerfile build pack, and port 80. Public links target `https://ufinbrazil.mixed.group`; confirm the hosting domain configuration before release. The Dockerfile copies only public site files and assets. Changes in this review branch must not be merged or deployed until authorized.
