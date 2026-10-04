@@ -1,0 +1,10 @@
+// Public configuration only. Keep provider credentials on the signup service.
+window.UFBrazilConfig = Object.freeze({
+  signupEndpoint: null,
+  programGuideUrl: null,
+  bookVisualUrl: "assets/book-cover-mockup.png",
+  bookVisualAlt:
+    "Concept cover mockup of Virtual Reality & Immersive Storytelling: Designing Experiences That Engage, Educate, and Inspire, credited to Dr. Alexandre G. de Siqueira, MBA, PhD",
+  bookVisualCaption:
+    "Concept cover preview supplied by the author. Final publication design may change.",
+});
