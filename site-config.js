@@ -2,7 +2,7 @@
 window.UFBrazilConfig = Object.freeze({
   // Update only from confirmed program availability, never information signups.
   availability: Object.freeze({ places: 12, updated: "2026-10-03" }),
-  signupEndpoint: null,
+  signupEndpoint: "/api/signup",
   ayushInvitation: Object.freeze({
     approved: false,
     headline: null,

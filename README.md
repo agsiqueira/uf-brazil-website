@@ -6,11 +6,11 @@ A static seven-section recruitment page and information signup page for **UF in 
 
 Install development tools with `npm ci`, then run `npm run preview` and open http://127.0.0.1:8081. For a dependency-free preview, `python -m http.server 8081 --bind 127.0.0.1` also works.
 
-The public site has no build step or runtime npm dependencies. HTML, CSS, JavaScript, and assets are served directly by nginx. npm packages are development-only tools for formatting, QR generation, and browser checks.
+The public site has no build step or runtime npm dependencies. A Node server serves public files and the signup API. npm packages are development-only tools for formatting, QR generation, and browser checks.
 
 ## Configuration and release
 
-Public integration settings are in `site-config.js`. Signup stays unavailable until an approved acceptance endpoint is configured. Program guide links stay hidden until the approved PDF exists. Book visual settings replace the clearly labeled concept spread when final artwork is supplied. Never place credentials in public configuration or display signup success without service acceptance.
+Public integration settings are in `site-config.js`. Signup uses the same-origin /api/signup endpoint; server-side provider credentials are required for acceptance. See docs/SIGNUP-OPERATIONS.md. Program guide links stay hidden until the approved PDF exists. Book visual settings replace the clearly labeled concept spread when final artwork is supplied. Never place credentials in public configuration or display signup success without service acceptance.
 
 See [release dependencies and email setup](docs/RELEASE.md) before merging or deploying. This implementation is for PR review; it must not be deployed yet.
 
