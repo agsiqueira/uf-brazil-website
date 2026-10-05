@@ -1,5 +1,7 @@
 # Signup delivery
 
+Gmail uses one pooled SMTP connection to avoid three simultaneous authentication attempts. The browser waits up to 60 seconds for acknowledgement. Partial acceptance returns `accepted: false`, `partial: true`, and a specific message advising recipients who already received information to contact the director. SMTP failure logs include message index (0 student, 1 UF, 2 Gmail), sanitized error code, response code, and elapsed time; no raw provider error or credentials are logged.
+
 ## Gmail (selected sender)
 
 Set `SMTP_USER=alexandre.g.siqueira@gmail.com` and `SMTP_PASSWORD` to a Google app password in Coolify runtime variables. Alex must create and enter this secret himself; do not use the normal Google password. The account needs 2-Step Verification and app-password eligibility. The server uses `smtp.gmail.com:465` with TLS and sends from that Gmail address. Gmail takes priority over Resend when both SMTP variables are supplied. Each of the three messages must be accepted by SMTP before success is returned. Partial acceptance returns failure and logs the accepted count; retries can duplicate already accepted messages. No automatic retries or subscription are performed.

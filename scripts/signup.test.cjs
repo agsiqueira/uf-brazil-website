@@ -30,7 +30,12 @@ test("Gmail requires all recipients accepted and reports partial failure", async
         },
       );
       assert.equal(response.status, fail ? 502 : 200);
-      assert.equal((await response.json()).accepted, !fail);
+      const result = await response.json();
+      assert.equal(result.accepted, !fail);
+      if (fail) {
+        assert.equal(result.partial, true);
+        assert.match(result.error, /Some emails were accepted/);
+      }
     } finally {
       await new Promise((resolve) => server.close(resolve));
     }

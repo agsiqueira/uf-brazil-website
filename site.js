@@ -170,7 +170,7 @@
     status.textContent = "Sending your request...";
     const fields = new FormData(form);
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
+    const timeout = setTimeout(() => controller.abort(), 60000);
     try {
       const response = await fetch(endpoint, {
         method: "POST",
@@ -180,14 +180,19 @@
         credentials: "omit",
       });
       const result = await response.json();
-      if (!response.ok || result.accepted !== true)
-        throw new Error("Not accepted");
+      if (!response.ok || result.accepted !== true) {
+        status.textContent =
+          typeof result.error === "string"
+            ? result.error
+            : "We could not confirm your signup. Please try again or contact the program director below.";
+        return;
+      }
       status.textContent =
         "Your information request has been accepted. Thank you for your interest in UF in Brazil.";
       form.reset();
     } catch {
       status.textContent =
-        "We could not confirm your signup. Please try again or contact the program director below.";
+        "We could not confirm your signup. Email may still arrive. Check your inbox before trying again, or contact the program director below.";
     } finally {
       clearTimeout(timeout);
       submit.disabled = false;

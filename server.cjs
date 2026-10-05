@@ -63,6 +63,9 @@ function createServer({
         host: "smtp.gmail.com",
         port: 465,
         secure: true,
+        pool: true,
+        maxConnections: 1,
+        maxMessages: 100,
         auth: { user: env.SMTP_USER, pass: env.SMTP_PASSWORD },
         connectionTimeout: 5000,
         greetingTimeout: 5000,
@@ -116,6 +119,7 @@ function createServer({
         });
       }
       const requestId = randomUUID();
+      const started = Date.now();
       try {
         if (smtp) {
           const outcomes = await Promise.allSettled(
@@ -135,11 +139,36 @@ function createServer({
               event: "signup_smtp_result",
               requestId,
               acceptedCount: accepted.length,
+              durationMs: Date.now() - started,
+              failures: outcomes.flatMap((item, index) =>
+                item.status === "rejected"
+                  ? [
+                      {
+                        messageIndex: index,
+                        code: String(item.reason?.code || "UNKNOWN").replace(
+                          /[^A-Z0-9_]/gi,
+                          "",
+                        ),
+                        responseCode: Number(item.reason?.responseCode) || null,
+                      },
+                    ]
+                  : item.value.rejected?.length
+                    ? [{ messageIndex: index, code: "RECIPIENT_REJECTED" }]
+                    : [],
+              ),
               messageIds: accepted.map((item) => item.value.messageId),
             }),
           );
           if (accepted.length !== 3)
-            throw new Error("SMTP did not accept all messages");
+            return json(res, 502, {
+              accepted: false,
+              requestId,
+              partial: accepted.length > 0,
+              error:
+                accepted.length > 0
+                  ? "Some emails were accepted, but we could not confirm all notifications. If you received the program email, please contact the director rather than submit again."
+                  : "The email service could not accept your request. Please try again later or contact the director.",
+            });
           return json(res, 200, { accepted: true, requestId });
         }
         const response = await transport(
