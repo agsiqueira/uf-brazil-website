@@ -1,6 +1,41 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { createServer, validate, messages } = require("../server.cjs");
+test("Gmail requires all recipients accepted and reports partial failure", async () => {
+  for (const fail of [false, true]) {
+    const server = createServer({
+      env: { SMTP_USER: "sender@gmail.com", SMTP_PASSWORD: "test-only" },
+      smtpTransport: {
+        sendMail: async (message) => ({
+          accepted:
+            fail && message.to[0] === "agomesdesiqueira@ufl.edu"
+              ? []
+              : message.to,
+          rejected:
+            fail && message.to[0] === "agomesdesiqueira@ufl.edu"
+              ? message.to
+              : [],
+          messageId: "test-message",
+        }),
+      },
+    });
+    await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:${server.address().port}/api/signup`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: "student@example.com" }),
+        },
+      );
+      assert.equal(response.status, fail ? 502 : 200);
+      assert.equal((await response.json()).accepted, !fail);
+    } finally {
+      await new Promise((resolve) => server.close(resolve));
+    }
+  }
+});
 test("email only and optional field validation", () => {
   assert.equal(validate({ email: "student@example.com" }).name, "");
   for (const input of [

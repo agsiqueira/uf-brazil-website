@@ -1,5 +1,7 @@
 FROM node:24-alpine
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
 COPY server.cjs index.html signup.html styles.css site.js site-config.js ./
 COPY assets/ ./assets/
 COPY ["Colorful street scene of Salvador, Brazil.jpg", "/app/"]

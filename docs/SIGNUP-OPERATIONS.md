@@ -1,5 +1,9 @@
 # Signup delivery
 
+## Gmail (selected sender)
+
+Set `SMTP_USER=alexandre.g.siqueira@gmail.com` and `SMTP_PASSWORD` to a Google app password in Coolify runtime variables. Alex must create and enter this secret himself; do not use the normal Google password. The account needs 2-Step Verification and app-password eligibility. The server uses `smtp.gmail.com:465` with TLS and sends from that Gmail address. Gmail takes priority over Resend when both SMTP variables are supplied. Each of the three messages must be accepted by SMTP before success is returned. Partial acceptance returns failure and logs the accepted count; retries can duplicate already accepted messages. No automatic retries or subscription are performed.
+
 The Dockerfile serves public files and `/api/signup` using Node on port 80. Only email is required. No student data is persisted locally. The endpoint returns `accepted: true` only after Resend acknowledges three message IDs: the student information email and separate notifications to both director addresses. This means provider acceptance, not inbox receipt. Errors and timeouts return failure and preserve form fields; an ambiguous timeout can still have sent mail, so retries may duplicate messages.
 
 Set these runtime variables in the UF-Brazil Coolify application (never frontend files or build arguments):

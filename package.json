@@ -11,5 +11,8 @@
     "playwright": "1.58.2",
     "prettier": "3.8.1",
     "qrcode": "1.5.4"
+  },
+  "dependencies": {
+    "nodemailer": "^10.0.15"
   }
 }

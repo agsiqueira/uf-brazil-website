@@ -50,8 +50,25 @@ function messages(student, sender, origin) {
     })),
   ];
 }
-function createServer({ env = process.env, transport = fetch } = {}) {
+function createServer({
+  env = process.env,
+  transport = fetch,
+  smtpTransport,
+} = {}) {
   const origin = env.PUBLIC_ORIGIN || "https://ufinbrazil.mixed.group";
+  const gmail = env.SMTP_USER && env.SMTP_PASSWORD;
+  const smtp = gmail
+    ? smtpTransport ||
+      require("nodemailer").createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: { user: env.SMTP_USER, pass: env.SMTP_PASSWORD },
+        connectionTimeout: 5000,
+        greetingTimeout: 5000,
+        socketTimeout: 10000,
+      })
+    : null;
   const attempts = new Map();
   const json = (res, status, body) => {
     res.writeHead(status, {
@@ -68,7 +85,7 @@ function createServer({ env = process.env, transport = fetch } = {}) {
         return json(res, 403, { accepted: false });
       if (!req.headers["content-type"]?.startsWith("application/json"))
         return json(res, 415, { accepted: false });
-      if (!env.RESEND_API_KEY || !env.SIGNUP_FROM)
+      if (!gmail && (!env.RESEND_API_KEY || !env.SIGNUP_FROM))
         return json(res, 503, {
           accepted: false,
           error:
@@ -100,6 +117,31 @@ function createServer({ env = process.env, transport = fetch } = {}) {
       }
       const requestId = randomUUID();
       try {
+        if (smtp) {
+          const outcomes = await Promise.allSettled(
+            messages(student, env.SMTP_USER, origin).map(
+              ({ reply_to, ...message }) =>
+                smtp.sendMail({ ...message, replyTo: reply_to }),
+            ),
+          );
+          const accepted = outcomes.filter(
+            (item) =>
+              item.status === "fulfilled" &&
+              item.value.accepted?.length === 1 &&
+              !item.value.rejected?.length,
+          );
+          console.info(
+            JSON.stringify({
+              event: "signup_smtp_result",
+              requestId,
+              acceptedCount: accepted.length,
+              messageIds: accepted.map((item) => item.value.messageId),
+            }),
+          );
+          if (accepted.length !== 3)
+            throw new Error("SMTP did not accept all messages");
+          return json(res, 200, { accepted: true, requestId });
+        }
         const response = await transport(
           "https://api.resend.com/emails/batch",
           {
