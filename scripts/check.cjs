@@ -5,7 +5,10 @@ const { spawn } = require("node:child_process");
 const { chromium } = require("playwright");
 const { default: AxeBuilder } = require("@axe-core/playwright");
 const root = path.resolve(__dirname, "..");
-const output = path.join(root, "docs", "screenshots");
+const reportDir = process.env.CHECK_OUTPUT_DIR
+  ? path.resolve(process.env.CHECK_OUTPUT_DIR)
+  : path.join(root, "docs");
+const output = path.join(reportDir, "screenshots");
 const base = "http://127.0.0.1:8082";
 const server = spawn(process.execPath, [path.join(__dirname, "preview.cjs")], {
   cwd: root,
@@ -111,8 +114,43 @@ async function checkLayout(page, label, url, size) {
     }
     assert.equal(
       await page.locator(`#details a[href="${applicationUrl}"]`).count(),
-      1,
+      2,
     );
+    const fundingUrl =
+      "https://www.eng.ufl.edu/undergraduate/programs-and-partnerships/international-programs/resources-and-funding/";
+    const fundingLinks = page.locator(`a[href="${fundingUrl}"]`);
+    assert.equal(await fundingLinks.count(), 4);
+    for (const link of await fundingLinks.all()) {
+      assert.equal(await link.getAttribute("target"), "_blank");
+      assert.equal(await link.getAttribute("rel"), "noopener noreferrer");
+    }
+    for (const group of [".hero-bottom .actions", ".closing .actions"]) {
+      const links = page.locator(`${group} a:not([data-guide])`);
+      assert.deepEqual(
+        await links.evaluateAll((items) =>
+          items.map((a) => a.getAttribute("href")),
+        ),
+        [applicationUrl, "signup.html", fundingUrl],
+      );
+      assert.equal(
+        await page
+          .locator(`${group} .button-apply`)
+          .evaluate((el) => getComputedStyle(el).backgroundColor),
+        "rgb(169, 52, 29)",
+      );
+    }
+    const fundingQuestion = page.getByText(
+      "Are scholarships or financial aid available?",
+      { exact: true },
+    );
+    await fundingQuestion.focus();
+    await page.keyboard.press("Enter");
+    assert(
+      await page
+        .getByRole("link", { name: "View UF Scholarships & Financial Aid" })
+        .isVisible(),
+    );
+    await page.keyboard.press("Enter");
     assert.equal(await page.locator(".video-preview").count(), 2);
     const heroImage = page.locator(".hero-photo img");
     const displayed = await heroImage.boundingBox();
@@ -307,6 +345,13 @@ async function signupScenario(context, name, response, expected) {
     ["small-phone", { width: 320, height: 700 }],
   ])
     await checkLayout(page, label, "/", size);
+  // Exercise the unavailable-service state independently of live public config.
+  await page.route(/\/site-config\.js(?:\?.*)?$/, (route) =>
+    route.fulfill({
+      contentType: "application/javascript",
+      body: "window.UFBrazilConfig = {};",
+    }),
+  );
   await checkLayout(page, "signup-desktop", "/signup.html", {
     width: 1440,
     height: 1000,
@@ -323,6 +368,7 @@ async function signupScenario(context, name, response, expected) {
       .isDisabled(),
   );
   assert.match(await page.getByRole("status").innerText(), /not available/);
+  await page.unroute(/\/site-config\.js(?:\?.*)?$/);
   await page.goto(base + "/");
   await page.route("https://www.youtube-nocookie.com/embed/**", (route) =>
     route.fulfill({
@@ -502,7 +548,7 @@ async function signupScenario(context, name, response, expected) {
   });
   await invitationPage.close();
   fs.writeFileSync(
-    path.join(root, "docs", "checks.json"),
+    path.join(reportDir, "checks.json"),
     JSON.stringify(report, null, 2) + "\n",
   );
   console.log(JSON.stringify(report, null, 2));

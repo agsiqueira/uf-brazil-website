@@ -1312,3 +1312,53 @@ footer {
     margin-top: 28px;
   }
 }
+
+/* Funding supports the application action with a quieter text-link treatment. */
+.funding-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.hero-bottom .funding-link {
+  flex-basis: 100%;
+}
+.hero-bottom .funding-note {
+  font-size: 13px;
+  margin-top: -8px;
+}
+.funding-card {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green);
+  padding: 22px;
+  margin: 24px 0;
+}
+.funding-card p {
+  font-size: 14px;
+  max-width: 950px;
+  margin: 12px 0 4px;
+}
+.closing .button-apply {
+  background: #a9341d;
+  color: white;
+}
+.closing .button-apply:hover {
+  background: #812711;
+}
+.closing .closing-funding {
+  font-size: 14px;
+  max-width: 650px;
+}
+.closing a:focus-visible {
+  outline-color: var(--gold);
+}
+@media (max-width: 600px) {
+  .closing .actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}
